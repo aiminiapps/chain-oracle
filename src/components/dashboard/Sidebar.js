@@ -63,11 +63,11 @@ export default function Sidebar() {
         <motion.div
           layout
           className={`
-            flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium
+            flex items-center gap-3 px-3 py-2.5 rounded-sm text-sm font-medium
             transition-all duration-300 relative overflow-hidden
             ${active
-              ? "text-white"
-              : "text-[#8E8E9A] hover:text-white"
+              ? "text-white border-dashed border border-gray-500/30"
+              : "text-[#8E8E9A] hover:text-white "
             }
           `}
           style={active ? {
@@ -147,26 +147,6 @@ export default function Sidebar() {
         </motion.div>
       )}
 
-      {/* ─── CORA Balance Card ─── */}
-      {(!collapsed || mobile) && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="mx-4 mt-1 mb-1 p-3 rounded-xl bg-gradient-to-r from-[#7C3AED]/8 to-[#9F67FF]/5 border border-[#7C3AED]/10"
-        >
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-lg bg-[#7C3AED]/15 flex items-center justify-center">
-              <RiCoinLine className="text-[#9F67FF] text-xs" />
-            </div>
-            <span className="text-[#8E8E9A] text-xs">CORA Balance</span>
-          </div>
-          <p className="text-white font-bold text-lg mt-1 ml-0.5">
-            {loaded ? balance.toLocaleString() : "..."}
-            <span className="text-[#6B6B76] text-xs font-medium ml-1">CORA</span>
-          </p>
-        </motion.div>
-      )}
-
       {/* Collapsed balance icon */}
       {collapsed && !mobile && (
         <div className="mx-auto my-2 w-9 h-9 rounded-xl bg-[#7C3AED]/10 flex items-center justify-center" title={`${loaded ? balance : '...'} CORA`}>
@@ -212,7 +192,7 @@ export default function Sidebar() {
           transition={{ delay: 0.2 }}
           className="mx-3 mb-2"
         >
-          <div className="relative rounded-2xl overflow-hidden p-4"
+          <div className="relative rounded-sm overflow-hidden p-4  border-dashed border border-gray-500/30"
             style={{
               background: "linear-gradient(145deg, rgba(124,58,237,0.25) 0%, rgba(88,28,195,0.15) 40%, rgba(30,20,60,0.9) 100%)",
             }}
@@ -222,7 +202,7 @@ export default function Sidebar() {
             <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-[#9F67FF]/10 rounded-full blur-2xl pointer-events-none" />
 
             {/* Logo + Title */}
-            <div className="relative z-10">
+            <div className="relative z-10 ">
               <div className="flex items-center gap-2.5 mb-2">
                 <Image src="/agent.png" alt="Logo" width={32} height={32} />
                 <div>
