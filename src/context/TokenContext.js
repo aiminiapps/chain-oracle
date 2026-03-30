@@ -6,15 +6,16 @@ import { useAccount } from "wagmi";
 const TokenContext = createContext(null);
 
 const STORAGE_KEYS = {
-  balance: "ascp_balance",
-  history: "ascp_history",
-  quests: "ascp_completed_quests",
-  analyzed: "ascp_analyzed_tokens",
-  trackedWallets: "ascp_tracked_wallets",
-  alertSettings: "ascp_alert_settings",
+  balance: "cora_balance",
+  history: "cora_history",
+  quests: "cora_completed_quests",
+  analyzed: "cora_analyzed_tokens",
+  trackedWallets: "cora_tracked_wallets",
+  alertSettings: "cora_alert_settings",
+  watchlist: "cora_watchlist",
 };
 
-const INITIAL_BALANCE = 500; // new users start with 500 ASCP
+const INITIAL_BALANCE = 500; // new users start with 500 CORA
 
 function loadFromStorage(key, fallback) {
   if (typeof window === "undefined") return fallback;
@@ -42,6 +43,7 @@ export function TokenProvider({ children }) {
   const [completedQuests, setCompletedQuests] = useState([]);
   const [analyzedTokens, setAnalyzedTokens] = useState({});
   const [trackedWallets, setTrackedWallets] = useState([]);
+  const [watchlist, setWatchlist] = useState([]);
   const [alertSettings, setAlertSettings] = useState({
     WHALE_BUY: true, LIQUIDITY_SPIKE: true, VOLUME_SURGE: true, SMART_MONEY: true, NEW_TOKEN: false,
   });
@@ -54,6 +56,7 @@ export function TokenProvider({ children }) {
     setCompletedQuests(loadFromStorage(STORAGE_KEYS.quests, []));
     setAnalyzedTokens(loadFromStorage(STORAGE_KEYS.analyzed, {}));
     setTrackedWallets(loadFromStorage(STORAGE_KEYS.trackedWallets, []));
+    setWatchlist(loadFromStorage(STORAGE_KEYS.watchlist, []));
     setAlertSettings(loadFromStorage(STORAGE_KEYS.alertSettings, {
       WHALE_BUY: true, LIQUIDITY_SPIKE: true, VOLUME_SURGE: true, SMART_MONEY: true, NEW_TOKEN: false,
     }));
@@ -65,7 +68,7 @@ export function TokenProvider({ children }) {
     if (!loaded) return;
     if (isConnected && address) {
       const storedBalance = loadFromStorage(STORAGE_KEYS.balance, null);
-      const hasInitialized = loadFromStorage("ascp_wallet_initialized", false);
+      const hasInitialized = loadFromStorage("cora_wallet_initialized", false);
       if (hasInitialized) {
         // Returning user — restore their balance
         setBalance(storedBalance !== null ? storedBalance : INITIAL_BALANCE);
@@ -73,7 +76,7 @@ export function TokenProvider({ children }) {
         // First time connecting — grant initial tokens
         setBalance(INITIAL_BALANCE);
         saveToStorage(STORAGE_KEYS.balance, INITIAL_BALANCE);
-        saveToStorage("ascp_wallet_initialized", true);
+        saveToStorage("cora_wallet_initialized", true);
       }
       setWalletInitialized(true);
     } else {
@@ -108,6 +111,11 @@ export function TokenProvider({ children }) {
     if (!loaded) return;
     saveToStorage(STORAGE_KEYS.trackedWallets, trackedWallets);
   }, [trackedWallets, loaded]);
+
+  useEffect(() => {
+    if (!loaded) return;
+    saveToStorage(STORAGE_KEYS.watchlist, watchlist);
+  }, [watchlist, loaded]);
 
   useEffect(() => {
     if (!loaded) return;
@@ -163,6 +171,16 @@ export function TokenProvider({ children }) {
     setTrackedWallets((prev) => prev.filter((w) => w.address !== address));
   }, []);
 
+  const addToWatchlist = useCallback((token) => {
+    if (watchlist.find((w) => w.address === token.address)) return false;
+    setWatchlist((prev) => [...prev, { ...token, addedAt: Date.now() }]);
+    return true;
+  }, [watchlist]);
+
+  const removeFromWatchlist = useCallback((address) => {
+    setWatchlist((prev) => prev.filter((w) => w.address !== address));
+  }, []);
+
   const updateAlertSettings = useCallback((settings) => {
     setAlertSettings(settings);
   }, []);
@@ -173,6 +191,7 @@ export function TokenProvider({ children }) {
     completedQuests,
     analyzedTokens,
     trackedWallets,
+    watchlist,
     alertSettings,
     loaded,
     isConnected,
@@ -184,6 +203,8 @@ export function TokenProvider({ children }) {
     getCachedAnalysis,
     trackWallet,
     removeTrackedWallet,
+    addToWatchlist,
+    removeFromWatchlist,
     updateAlertSettings,
   };
 

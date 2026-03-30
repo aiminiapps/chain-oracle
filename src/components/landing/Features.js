@@ -2,73 +2,103 @@
 
 import { motion, AnimatePresence } from "motion/react";
 import {
-  RiSearchEyeLine,
-  RiVipDiamondLine,
-  RiWallet3Line,
-  RiNotification3Line,
   RiLineChartLine,
-  RiCheckLine, RiLoader4Line, RiLinkM
+  RiTrophyLine,
+  RiEyeLine,
+  RiNotification3Line,
+  RiFileChartLine,
+  RiCheckLine, RiLoader4Line, RiLinkM, RiStarLine
 } from "react-icons/ri";
 import { useState, useEffect } from "react";
 
-const float = (delay = 0) => ({
-  animate: { y: [0, -8, 0] },
-  transition: { repeat: Infinity, duration: 4, delay, ease: "easeInOut" },
-});
-
-const pulse = (delay = 0) => ({
-  animate: { opacity: [0.4, 1, 0.4] },
-  transition: { repeat: Infinity, duration: 3, delay, ease: "easeInOut" },
-});
-
-
-function AnalyzerVisual() {
+/* ─── VISUAL 1: Predictive AI Engine ─── */
+function PredictiveVisual() {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      {/* Glass analysis window */}
-      <div className="w-[85%] max-w-[260px] rounded-2xl bg-[#111]/80 border border-[#1E1E1E] p-4 backdrop-blur-sm shadow-2xl">
+      <div className="w-[85%] max-w-[280px] rounded-2xl bg-[#0D0D14]/80 border border-[#2A2A3A] p-4 backdrop-blur-sm shadow-2xl">
         {/* Window dots */}
         <div className="flex gap-1.5 mb-4">
-          <div className="w-2 h-2 rounded-full bg-[#FF4444]/60" />
-          <div className="w-2 h-2 rounded-full bg-[#F5D90A]/60" />
+          <div className="w-2 h-2 rounded-full bg-[#EF4444]/60" />
+          <div className="w-2 h-2 rounded-full bg-[#7C3AED]/60" />
           <div className="w-2 h-2 rounded-full bg-[#22C55E]/60" />
         </div>
 
-        {/* Search bar with typing cursor */}
-        <div className="h-8 rounded-lg bg-[#0A0A0A] border border-[#222] flex items-center px-3 mb-4">
-          <RiSearchEyeLine className="text-[#555] text-sm mr-2 shrink-0" />
+        {/* Token header */}
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-[#7C3AED]/15 border border-[#7C3AED]/30 flex items-center justify-center">
+              <RiLineChartLine className="text-[#7C3AED] text-xs" />
+            </div>
+            <div>
+              <div className="text-white text-[10px] font-bold">$ORACLE</div>
+              <div className="text-[#6B6B76] text-[8px]">AI Forecast</div>
+            </div>
+          </div>
           <motion.div
-            animate={{ width: ["0%", "60%", "60%", "0%"] }}
-            transition={{ repeat: Infinity, duration: 5, times: [0, 0.3, 0.7, 1] }}
-            className="h-1.5 bg-[#F5D90A]/60 rounded-full"
-          />
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+            className="text-[#22C55E] text-[10px] font-bold bg-[#22C55E]/10 px-2 py-0.5 rounded-md"
+          >
+            87% probability
+          </motion.div>
+        </div>
+
+        {/* Mini predictive chart */}
+        <div className="h-[60px] relative overflow-hidden rounded-lg bg-[#0A0A0F] border border-[#2A2A3A] mb-3">
+          <svg className="w-full h-full overflow-visible" viewBox="0 0 200 50" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="predFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#7C3AED" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            {/* Actual line */}
+            <motion.path
+              d="M0,40 C20,38 30,30 50,32 C70,34 80,20 100,22 C110,23 115,18 120,15"
+              fill="none" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round"
+              initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+            />
+            <motion.path
+              d="M0,40 C20,38 30,30 50,32 C70,34 80,20 100,22 C110,23 115,18 120,15 L120,50 L0,50 Z"
+              fill="url(#predFill)"
+              initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 1] }}
+              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+            />
+            {/* Prediction dashed line */}
+            <motion.path
+              d="M120,15 C140,10 160,8 180,5 C190,3 195,6 200,4"
+              fill="none" stroke="#9F67FF" strokeWidth="1.5" strokeLinecap="round"
+              strokeDasharray="4 3"
+              initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+              transition={{ duration: 1.5, delay: 2, repeat: Infinity, repeatDelay: 3.5 }}
+            />
+          </svg>
+          {/* Scanning line */}
           <motion.div
-            animate={{ opacity: [1, 0, 1] }}
-            transition={{ repeat: Infinity, duration: 0.8 }}
-            className="w-0.5 h-3.5 bg-[#F5D90A] ml-1 rounded-full"
+            animate={{ left: ["-5%", "105%"] }}
+            transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+            className="absolute top-0 bottom-0 w-px"
+            style={{
+              background: "linear-gradient(to bottom, transparent, #7C3AED40, transparent)",
+              boxShadow: "0 0 8px #7C3AED40",
+            }}
           />
         </div>
 
-        {/* Analysis bars */}
-        <div className="space-y-2.5">
+        {/* Score metrics */}
+        <div className="space-y-2">
           {[
-            { label: "Risk", w: "75%", color: "#22C55E", delay: 0.5 },
-            { label: "Liquidity", w: "60%", color: "#3B82F6", delay: 0.8 },
-            { label: "Volume", w: "85%", color: "#A855F7", delay: 1.1 },
+            { label: "Trend Score", w: "82%", color: "#7C3AED", delay: 0.5 },
+            { label: "Momentum", w: "68%", color: "#22C55E", delay: 0.8 },
+            { label: "Narrative", w: "75%", color: "#3B82F6", delay: 1.1 },
           ].map((bar) => (
             <div key={bar.label} className="flex items-center gap-2">
-              <span className="text-[9px] text-[#555] w-12 shrink-0 font-mono">
-                {bar.label}
-              </span>
-              <div className="flex-1 h-1.5 bg-[#1A1A1A] rounded-full overflow-hidden">
+              <span className="text-[9px] text-[#6B6B76] w-14 shrink-0 font-mono">{bar.label}</span>
+              <div className="flex-1 h-1.5 bg-[#1C1C2E] rounded-full overflow-hidden">
                 <motion.div
                   animate={{ width: ["0%", bar.w, bar.w, "0%"] }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 4,
-                    delay: bar.delay,
-                    times: [0, 0.2, 0.8, 1],
-                  }}
+                  transition={{ repeat: Infinity, duration: 4, delay: bar.delay, times: [0, 0.2, 0.8, 1] }}
                   className="h-full rounded-full"
                   style={{ backgroundColor: bar.color }}
                 />
@@ -77,14 +107,14 @@ function AnalyzerVisual() {
           ))}
         </div>
 
-        {/* Score badge */}
+        {/* Forecast badge */}
         <motion.div
           animate={{ opacity: [0, 0, 1, 1, 0], scale: [0.8, 0.8, 1, 1, 0.8] }}
           transition={{ repeat: Infinity, duration: 5, times: [0, 0.3, 0.4, 0.85, 1] }}
-          className="mt-4 mx-auto w-fit px-4 py-1.5 rounded-full bg-[#22C55E]/10 border border-[#22C55E]/20"
+          className="mt-3 mx-auto w-fit px-4 py-1.5 rounded-full bg-[#7C3AED]/10 border border-[#7C3AED]/20"
         >
-          <span className="text-[#22C55E] text-[10px] font-bold tracking-wider">
-            SCORE: 8.7 / 10
+          <span className="text-[#9F67FF] text-[10px] font-bold tracking-wider">
+            FORECAST: 8.7 / 10
           </span>
         </motion.div>
       </div>
@@ -92,55 +122,55 @@ function AnalyzerVisual() {
   );
 }
 
-function GemScannerVisual() {
-  const gems = [
-    { name: "GEM", score: "9.2", color: "#F5D90A", change: "+142%", mcap: "$1.2M", holders: "2,841", tag: "Hot" },
-    { name: "ALPHA", score: "8.6", color: "#3B82F6", change: "+89%", mcap: "$3.8M", holders: "5,120", tag: "Rising" },
-    { name: "MOON", score: "7.9", color: "#A855F7", change: "+210%", mcap: "$680K", holders: "1,293", tag: "New" },
-    { name: "DEGEN", score: "8.1", color: "#22C55E", change: "+67%", mcap: "$2.1M", holders: "3,742", tag: "Trending" },
+/* ─── VISUAL 2: Curated Alpha Feeds (Best of Week/Month) ─── */
+function CuratedFeedsVisual() {
+  const picks = [
+    { name: "ORBIT", score: "9.4", color: "#7C3AED", change: "+186%", tag: "Best of Week", trend: "↑" },
+    { name: "NEXUS", score: "8.8", color: "#22C55E", change: "+112%", tag: "Rising Star", trend: "↑" },
+    { name: "PULSE", score: "9.1", color: "#3B82F6", change: "+243%", tag: "Best of Month", trend: "↗" },
+    { name: "SIGNAL", score: "8.5", color: "#9F67FF", change: "+97%", tag: "AI Pick", trend: "↑" },
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % gems.length);
+      setActiveIndex((prev) => (prev + 1) % picks.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [gems.length]);
+  }, [picks.length]);
 
-  const gem = gems[activeIndex];
+  const pick = picks[activeIndex];
 
   return (
     <div className="relative w-full h-full flex items-center justify-center">
       <div className="w-[85%] max-w-[260px] flex flex-col items-center gap-3">
-        {/* Scanner Header */}
-        <div className="w-full rounded-xl bg-[#111]/80 border border-[#1E1E1E] p-3 backdrop-blur-sm">
+        {/* Header */}
+        <div className="w-full rounded-xl bg-[#0D0D14]/80 border border-[#2A2A3A] p-3 backdrop-blur-sm">
           <div className="flex items-center justify-between mb-2.5">
             <div className="flex items-center gap-2">
-              <RiVipDiamondLine className="text-[#3B82F6] text-sm" />
-              <span className="text-[10px] text-[#888] font-mono uppercase">Scanning Gems</span>
+              <RiTrophyLine className="text-[#7C3AED] text-sm" />
+              <span className="text-[10px] text-[#A1A1AA] font-mono uppercase">Curated Picks</span>
             </div>
             <motion.div
               animate={{ opacity: [0.4, 1, 0.4] }}
               transition={{ repeat: Infinity, duration: 1.5 }}
-              className="w-1.5 h-1.5 rounded-full bg-[#22C55E]"
-              style={{ boxShadow: "0 0 6px #22C55E" }}
+              className="w-1.5 h-1.5 rounded-full bg-[#7C3AED]"
+              style={{ boxShadow: "0 0 6px #7C3AED" }}
             />
           </div>
-          {/* Progress bar that syncs with slideshow */}
-          <div className="w-full h-1 rounded-full bg-[#1A1A1A] overflow-hidden">
+          <div className="w-full h-1 rounded-full bg-[#1C1C2E] overflow-hidden">
             <motion.div
               key={activeIndex}
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
               transition={{ duration: 3, ease: "linear" }}
-              className="h-full rounded-full bg-gradient-to-r from-[#F5D90A] to-[#F97316]"
+              className="h-full rounded-full bg-gradient-to-r from-[#7C3AED] to-[#9F67FF]"
             />
           </div>
         </div>
 
-        {/* Gem Card Slideshow */}
+        {/* Pick Card */}
         <div className="w-full h-[130px] relative">
           <AnimatePresence mode="wait">
             <motion.div
@@ -149,59 +179,53 @@ function GemScannerVisual() {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: -40, scale: 0.95 }}
               transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-              className="absolute inset-0 rounded-xl bg-[#111]/90 border border-[#1E1E1E] p-4 backdrop-blur-sm shadow-xl"
+              className="absolute inset-0 rounded-xl bg-[#0D0D14]/90 border border-[#2A2A3A] p-4 backdrop-blur-sm shadow-xl"
             >
-              {/* Top row: icon, name, tag */}
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2.5">
                   <div
                     className="w-9 h-9 rounded-lg flex items-center justify-center"
-                    style={{ background: `${gem.color}15`, border: `1px solid ${gem.color}30` }}
+                    style={{ background: `${pick.color}15`, border: `1px solid ${pick.color}30` }}
                   >
-                    <RiVipDiamondLine style={{ color: gem.color }} className="text-base" />
+                    <RiStarLine style={{ color: pick.color }} className="text-base" />
                   </div>
                   <div>
-                    <div className="text-white text-xs font-bold">${gem.name}</div>
-                    <div className="text-[#22C55E] text-[10px] font-semibold">{gem.change}</div>
+                    <div className="text-white text-xs font-bold">${pick.name}</div>
+                    <div className="text-[#22C55E] text-[10px] font-semibold">{pick.change}</div>
                   </div>
                 </div>
                 <div className="flex flex-col items-end gap-1.5">
                   <span
                     className="text-[9px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider"
-                    style={{ color: gem.color, backgroundColor: `${gem.color}15` }}
+                    style={{ color: pick.color, backgroundColor: `${pick.color}15` }}
                   >
-                    {gem.tag}
+                    {pick.tag}
                   </span>
-                  <span
-                    className="text-sm font-extrabold"
-                    style={{ color: gem.color }}
-                  >
-                    {gem.score}
+                  <span className="text-sm font-extrabold" style={{ color: pick.color }}>
+                    {pick.score}
                   </span>
                 </div>
               </div>
-
-              {/* Stats row */}
-              <div className="flex items-center gap-3 pt-2 border-t border-[#1E1E1E]">
+              <div className="flex items-center gap-3 pt-2 border-t border-[#2A2A3A]">
                 <div className="flex-1">
-                  <div className="text-[#555] text-[8px] uppercase font-mono">MCap</div>
-                  <div className="text-white text-[11px] font-semibold">{gem.mcap}</div>
+                  <div className="text-[#6B6B76] text-[8px] uppercase font-mono">Forecast</div>
+                  <div className="text-white text-[11px] font-semibold">Bullish {pick.trend}</div>
                 </div>
-                <div className="w-px h-6 bg-[#1E1E1E]" />
+                <div className="w-px h-6 bg-[#2A2A3A]" />
                 <div className="flex-1">
-                  <div className="text-[#555] text-[8px] uppercase font-mono">Holders</div>
-                  <div className="text-white text-[11px] font-semibold">{gem.holders}</div>
+                  <div className="text-[#6B6B76] text-[8px] uppercase font-mono">Confidence</div>
+                  <div className="text-white text-[11px] font-semibold">High</div>
                 </div>
-                <div className="w-px h-6 bg-[#1E1E1E]" />
+                <div className="w-px h-6 bg-[#2A2A3A]" />
                 <div className="flex-1">
-                  <div className="text-[#555] text-[8px] uppercase font-mono">Score</div>
-                  <div className="h-1 rounded-full bg-[#1A1A1A] mt-1.5 overflow-hidden">
+                  <div className="text-[#6B6B76] text-[8px] uppercase font-mono">Score</div>
+                  <div className="h-1 rounded-full bg-[#1C1C2E] mt-1.5 overflow-hidden">
                     <motion.div
                       initial={{ width: "0%" }}
-                      animate={{ width: `${parseFloat(gem.score) * 10}%` }}
+                      animate={{ width: `${parseFloat(pick.score) * 10}%` }}
                       transition={{ duration: 0.6, delay: 0.2 }}
                       className="h-full rounded-full"
-                      style={{ backgroundColor: gem.color }}
+                      style={{ backgroundColor: pick.color }}
                     />
                   </div>
                 </div>
@@ -210,160 +234,82 @@ function GemScannerVisual() {
           </AnimatePresence>
         </div>
 
-        {/* Navigation dots */}
+        {/* Dots */}
         <div className="flex items-center gap-2">
-          {gems.map((_, i) => (
+          {picks.map((_, i) => (
             <button
               key={i}
               onClick={() => setActiveIndex(i)}
               className="relative w-2 h-2 rounded-full transition-all duration-300"
               style={{
-                backgroundColor: i === activeIndex ? "#F5D90A" : "#333",
-                boxShadow: i === activeIndex ? "0 0 8px rgba(245,217,10,0.5)" : "none",
+                backgroundColor: i === activeIndex ? "#7C3AED" : "#2A2A3A",
+                boxShadow: i === activeIndex ? "0 0 8px rgba(124,58,237,0.5)" : "none",
               }}
             />
           ))}
         </div>
       </div>
 
-      {/* Glow behind */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-[#3B82F6]/5 rounded-full blur-[60px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-[#7C3AED]/5 rounded-full blur-[60px]" />
     </div>
   );
 }
 
-const WalletVisual = () => {
-  // States: 'idle' -> 'connecting' -> 'connected'
-  const [status, setStatus] = useState('idle');
-
-  // This effect simulates the connection process automatically
-  useEffect(() => {
-    let timeout1, timeout2, timeout3;
-
-    const runSequence = () => {
-      setStatus('idle');
-      timeout1 = setTimeout(() => setStatus('connecting'), 2000);
-      timeout2 = setTimeout(() => setStatus('connected'), 5000);
-      timeout3 = setTimeout(runSequence, 9000); // Loop back to start
-    };
-
-    runSequence();
-
-    return () => {
-      clearTimeout(timeout1);
-      clearTimeout(timeout2);
-      clearTimeout(timeout3);
-    };
-  }, []);
+/* ─── VISUAL 3: Personalized Watchlist ─── */
+function WatchlistVisual() {
+  const items = [
+    { token: "ETH", status: "Tracking", change: "+5.2%", color: "#22C55E" },
+    { token: "SOL", status: "Alert Set", change: "+12.8%", color: "#7C3AED" },
+    { token: "AVAX", status: "Watching", change: "-2.1%", color: "#EF4444" },
+  ];
 
   return (
-    // Outer container purely for centering in your preview
-    <div className="w-full min-h-[300px]  flex items-center justify-center font-sans">
-      
-      {/* The Morphing Container */}
-      <motion.div
-        layout
-        transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        className="relative overflow-hidden bg-[#0A0A0A]/90 backdrop-blur-xl border -mt-16 border-white/10 shadow-2xl flex flex-col justify-center"
-        style={{
-          borderRadius: 24,
-          // We set minimum widths to prevent it from getting too tiny
-          minWidth: status === 'idle' ? 160 : 200,
-        }}
-      >
-        <AnimatePresence mode="wait">
-          
-          {/* STATE 1: IDLE / CONNECT */}
-          {status === 'idle' && (
+    <div className="w-full min-h-[300px] flex items-center justify-center font-sans">
+      <div className="w-[85%] max-w-[260px] rounded-2xl bg-[#0D0D14]/80 border border-[#2A2A3A] p-4 backdrop-blur-sm shadow-2xl">
+        <div className="flex items-center gap-2 mb-4">
+          <RiEyeLine className="text-[#7C3AED] text-sm" />
+          <span className="text-[10px] text-[#A1A1AA] font-mono uppercase">Your Watchlist</span>
+        </div>
+        <div className="space-y-2">
+          {items.map((item, i) => (
             <motion.div
-              key="idle"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
-              transition={{ duration: 0.2 }}
-              className="px-5 py-3 flex items-center justify-center gap-2 cursor-pointer group"
+              key={item.token}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.3, repeat: Infinity, repeatDelay: 6, duration: 0.4 }}
+              className="flex items-center justify-between p-2.5 rounded-lg bg-[#0A0A0F] border border-[#2A2A3A]"
             >
-              <RiWallet3Line className="text-[#F3BA2F] text-lg group-hover:scale-110 transition-transform" />
-              <span className="text-sm font-medium text-zinc-100 tracking-wide">
-                Connect Wallet
-              </span>
-            </motion.div>
-          )}
-
-          {/* STATE 2: CONNECTING */}
-          {status === 'connecting' && (
-            <motion.div
-              key="connecting"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
-              transition={{ duration: 0.2 }}
-              className="px-6 py-5 flex flex-col items-center justify-center gap-4"
-            >
-              <div className="relative flex items-center justify-center w-10 h-10">
-                {/* Soft pulsing glow behind spinner */}
-                <motion.div 
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.5, 0.2] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute inset-0 bg-[#F3BA2F] rounded-full blur-md"
-                />
-                <RiLoader4Line className="text-[#F3BA2F] text-2xl animate-spin relative z-10" />
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="text-sm font-semibold text-zinc-100">Connecting</span>
-                <span className="text-[11px] text-zinc-500 mt-0.5">Approve in wallet...</span>
-              </div>
-            </motion.div>
-          )}
-
-          {/* STATE 3: CONNECTED */}
-          {status === 'connected' && (
-            <motion.div
-              key="connected"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-              className="px-6 py-4 flex flex-col items-center justify-center"
-            >
-              {/* Success Icon */}
-              <div className="w-10 h-10 rounded-full bg-[#F3BA2F]/10 flex items-center justify-center mb-3 border border-[#F3BA2F]/20">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", delay: 0.1, bounce: 0.5 }}
-                >
-                  <RiCheckLine className="text-[#F3BA2F] text-xl" />
-                </motion.div>
-              </div>
-              
-              <span className="text-[13px] font-semibold text-zinc-100">
-                0x4A...8B91
-              </span>
-              
-              {/* BNB Chain Badge */}
-              <div className="mt-2 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-800/50 border border-zinc-700/50">
-                <div className="w-3 h-3 rounded-full bg-[#F3BA2F] flex items-center justify-center">
-                   <RiLinkM className="text-black text-[8px]" />
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-[#7C3AED]/10 flex items-center justify-center">
+                  <span className="text-[8px] font-bold text-[#9F67FF]">{item.token.slice(0, 2)}</span>
                 </div>
-                <span className="text-[10px] font-medium text-zinc-400">
-                  BNB Chain
-                </span>
+                <div>
+                  <div className="text-white text-[10px] font-semibold">{item.token}</div>
+                  <div className="text-[#6B6B76] text-[8px]">{item.status}</div>
+                </div>
               </div>
+              <span className="text-[10px] font-bold" style={{ color: item.color }}>{item.change}</span>
             </motion.div>
-          )}
-
-        </AnimatePresence>
-      </motion.div>
+          ))}
+        </div>
+        <motion.div
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+          className="mt-3 text-center text-[9px] text-[#7C3AED] font-medium"
+        >
+          AI adapts to your behavior →
+        </motion.div>
+      </div>
     </div>
   );
 }
 
+/* ─── VISUAL 4: Real-Time Alerts ─── */
 function AlertsVisual() {
   const alerts = [
-    { color: "#22C55E", icon: "🐋", text: "Whale bought 50 ETH", sub: "Just now" },
-    { color: "#F97316", icon: "🔓", text: "Liquidity unlocked", sub: "2m ago" },
-    { color: "#3B82F6", icon: "💎", text: "New gem detected", sub: "5m ago" },
+    { color: "#22C55E", icon: "🐋", text: "Whale accumulated 200 ETH", sub: "Just now" },
+    { color: "#7C3AED", icon: "📈", text: "Trend acceleration detected", sub: "2m ago" },
+    { color: "#3B82F6", icon: "💎", text: "Early-stage momentum signal", sub: "5m ago" },
   ];
 
   return (
@@ -373,7 +319,6 @@ function AlertsVisual() {
           <motion.div
             key={i}
             animate={{
-              // The sequence: Enter -> Hold center -> Pushed up -> Hold secondary -> Exit out top -> Stay hidden
               y: [40, 0, 0, -65, -65, -110, -110],
               opacity: [0, 1, 1, 0.4, 0.4, 0, 0],
               scale: [0.9, 1, 1, 0.95, 0.95, 0.9, 0.9],
@@ -382,11 +327,11 @@ function AlertsVisual() {
             transition={{
               repeat: Infinity,
               duration: 6,
-              delay: i * 2, // 2 second interval perfectly matches the 33% phase shifts in the times array
+              delay: i * 2,
               times: [0, 0.08, 0.33, 0.41, 0.66, 0.74, 1],
               ease: "easeInOut",
             }}
-            className="absolute inset-x-0 top-1/2 -translate-y-1/2 rounded-xl bg-[#111]/90 border border-[#1E1E1E] backdrop-blur-sm p-3 flex items-center gap-3 shadow-xl"
+            className="absolute inset-x-0 top-1/2 -translate-y-1/2 rounded-xl bg-[#0D0D14]/90 border border-[#2A2A3A] backdrop-blur-sm p-3 flex items-center gap-3 shadow-xl"
           >
             <div
               className="w-9 h-9 rounded-lg flex items-center justify-center text-base shrink-0"
@@ -396,7 +341,7 @@ function AlertsVisual() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="text-white text-xs font-semibold truncate">{alert.text}</div>
-              <div className="text-[#555] text-[10px] mt-0.5">{alert.sub}</div>
+              <div className="text-[#6B6B76] text-[10px] mt-0.5">{alert.sub}</div>
             </div>
             <div
               className="w-1.5 h-1.5 rounded-full shrink-0"
@@ -408,85 +353,77 @@ function AlertsVisual() {
     </div>
   );
 }
-function ChartVisual() {
+
+/* ─── VISUAL 5: Deep AI Reports ─── */
+function ReportsVisual() {
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center gap-3 px-2">
-      {/* Price header */}
+      {/* Report header */}
       <div className="w-full max-w-[260px] flex items-end justify-between px-1">
         <div>
-          <div className="text-[#555] text-[9px] font-mono uppercase">Price</div>
+          <div className="text-[#6B6B76] text-[9px] font-mono uppercase">Growth Potential</div>
           <motion.div
             animate={{ opacity: [0.6, 1, 0.6] }}
             transition={{ repeat: Infinity, duration: 2 }}
             className="text-white text-xl font-bold tracking-tight"
           >
-            $0.0847
+            92%
           </motion.div>
         </div>
         <motion.div
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ repeat: Infinity, duration: 3 }}
-          className="text-[#22C55E] text-xs font-bold bg-[#22C55E]/10 px-2 py-1 rounded-md"
+          className="text-[#7C3AED] text-xs font-bold bg-[#7C3AED]/10 px-2 py-1 rounded-md"
         >
-          +24.6%
+          High Conviction
         </motion.div>
       </div>
 
       {/* SVG Chart area */}
-      <div className="w-full max-w-[260px] h-[120px] bg-[#0A0A0A] border border-[#1E1E1E] rounded-xl relative overflow-hidden p-2">
-        <svg
-          className="w-full h-full overflow-visible"
-          viewBox="0 0 200 60"
-          preserveAspectRatio="none"
-        >
+      <div className="w-full max-w-[260px] h-[120px] bg-[#0A0A0F] border border-[#2A2A3A] rounded-xl relative overflow-hidden p-2">
+        <svg className="w-full h-full overflow-visible" viewBox="0 0 200 60" preserveAspectRatio="none">
           <defs>
-            <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#22C55E" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="#22C55E" stopOpacity="0" />
+            <linearGradient id="reportFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#7C3AED" stopOpacity="0" />
             </linearGradient>
           </defs>
-          {/* Grid lines */}
           {[15, 30, 45].map((y) => (
-            <line key={y} x1="0" y1={y} x2="200" y2={y} stroke="#1E1E1E" strokeWidth="0.5" />
+            <line key={y} x1="0" y1={y} x2="200" y2={y} stroke="#2A2A3A" strokeWidth="0.5" />
           ))}
-          {/* Area fill */}
           <motion.path
             d="M0,50 C20,45 30,30 50,35 C70,40 80,20 100,25 C120,30 130,10 150,15 C170,20 180,8 200,12 L200,60 L0,60 Z"
-            fill="url(#chartFill)"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 1, 1] }}
+            fill="url(#reportFill)"
+            initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 1] }}
             transition={{ duration: 2, repeat: Infinity, repeatDelay: 4 }}
           />
-          {/* Line */}
           <motion.path
             d="M0,50 C20,45 30,30 50,35 C70,40 80,20 100,25 C120,30 130,10 150,15 C170,20 180,8 200,12"
-            fill="none"
-            stroke="#22C55E"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: [0, 1] }}
+            fill="none" stroke="#7C3AED" strokeWidth="1.5" strokeLinecap="round"
+            initial={{ pathLength: 0 }} animate={{ pathLength: [0, 1] }}
             transition={{ duration: 3, repeat: Infinity, repeatDelay: 3, ease: "easeOut" }}
           />
-          {/* Dot at end */}
+          {/* Forecast dashed extension */}
+          <motion.path
+            d="M200,12 C210,8 220,5 230,3"
+            fill="none" stroke="#9F67FF" strokeWidth="1" strokeLinecap="round"
+            strokeDasharray="3 2"
+            initial={{ pathLength: 0 }} animate={{ pathLength: [0, 1] }}
+            transition={{ duration: 1, delay: 3, repeat: Infinity, repeatDelay: 5 }}
+          />
           <motion.circle
-            cx="200"
-            cy="12"
-            r="3"
-            fill="#22C55E"
+            cx="200" cy="12" r="3" fill="#7C3AED"
             animate={{ opacity: [0, 0, 1, 1, 0], scale: [0, 0, 1, 1.5, 0] }}
             transition={{ duration: 6, repeat: Infinity, times: [0, 0.45, 0.5, 0.9, 1] }}
           />
         </svg>
-
-        {/* Scanning line */}
         <motion.div
           animate={{ left: ["-5%", "105%"] }}
           transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
           className="absolute top-0 bottom-0 w-px"
           style={{
-            background: "linear-gradient(to bottom, transparent, #22C55E40, transparent)",
-            boxShadow: "0 0 8px #22C55E40",
+            background: "linear-gradient(to bottom, transparent, #7C3AED40, transparent)",
+            boxShadow: "0 0 8px #7C3AED40",
           }}
         />
       </div>
@@ -494,15 +431,15 @@ function ChartVisual() {
   );
 }
 
-
-/* ─── MAIN COMPONENT ─── */
+/* ═══════════════════════════════════════════
+   MAIN FEATURES COMPONENT
+   ═══════════════════════════════════════════ */
 export default function Features() {
   return (
     <section
       id="features"
-      className="py-16 relative overflow-hidden bg-[#0B0B0B]"
+      className="py-16 relative overflow-hidden bg-[#0A0A0F]"
     >
-
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section header */}
         <motion.div
@@ -513,172 +450,168 @@ export default function Features() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-white mt-3">
-            Your Unfair Advantage
+            Your <span className="gradient-text-purple">Prediction Engine</span>
           </h2>
-          <p className="text-[#888] mt-4 text-balance max-w-xl mx-auto">
-            Everything you need to find, analyze, and act on crypto opportunities before the crowd.
+          <p className="text-[#A1A1AA] mt-4 text-balance max-w-xl mx-auto">
+            Everything you need to forecast, discover, and act on crypto opportunities before they become obvious.
           </p>
         </motion.div>
 
         {/* ═══════ BENTO GRID ═══════ */}
         <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
-          {/* ── Card 1 · AI Token Analyzer (top-left, 3 cols) ── */}
+          {/* Card 1 · Predictive AI Engine (3 cols) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="md:col-span-3 rounded-3xl border border-[#1E1E1E] bg-gradient-to-b from-[#111] to-[#0A0A0A] flex flex-col overflow-hidden group hover:border-[#F5D90A]/20 transition-colors duration-500"
+            className="md:col-span-3 rounded-3xl border border-[#2A2A3A] bg-gradient-to-b from-[#141420] to-[#0D0D14] flex flex-col overflow-hidden group hover:border-[#7C3AED]/25 transition-all duration-500 card-3d"
           >
             <div className="p-3 rounded-2xl">
-              <div className="h-[260px] relative">
+              <div className="h-[280px] relative">
                 <div
-                    className="absolute inset-0 opacity-[0.15]"
-                    style={{
-                      backgroundImage: `radial-gradient(circle at center, #F5D90A 1px, transparent 1px)`,
-                      backgroundSize: "15px  15px",
-                      backgroundPosition: "0 0"
-                    }}
+                  className="absolute inset-0 opacity-[0.08]"
+                  style={{
+                    backgroundImage: `radial-gradient(circle at center, #7C3AED 1px, transparent 1px)`,
+                    backgroundSize: "15px 15px",
+                  }}
                 />
-              <AnalyzerVisual />
+                <PredictiveVisual />
               </div>
             </div>
             <div className="p-7 pt-0">
               <h3 className="text-white font-bold text-xl mb-2 flex items-center gap-2">
-                <RiSearchEyeLine className="text-[#F5D90A]" /> AI Token Analyzer
+                <RiLineChartLine className="text-[#7C3AED]" /> Predictive AI Engine
               </h3>
-              <p className="text-[#666] text-sm leading-relaxed">
-                Input any contract and get instant AI-generated research with
-                liquidity analysis, holder patterns, and risk scores.
+              <p className="text-[#6B6B76] text-sm leading-relaxed">
+                Analyzes historical and real-time blockchain data to forecast
+                token trends with trend probability, momentum scores, and
+                narrative strength analysis.
               </p>
             </div>
           </motion.div>
 
-          {/* ── Card 2 · Hidden Gem Scanner (top-right, 3 cols) ── */}
+          {/* Card 2 · Curated Alpha Feeds (3 cols) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="md:col-span-3 rounded-3xl border border-[#1E1E1E] bg-gradient-to-b from-[#111] to-[#0A0A0A] flex flex-col overflow-hidden group hover:border-[#3B82F6]/20 transition-colors duration-500"
+            className="md:col-span-3 rounded-3xl border border-[#2A2A3A] bg-gradient-to-b from-[#141420] to-[#0D0D14] flex flex-col overflow-hidden group hover:border-[#22C55E]/25 transition-all duration-500 card-3d"
           >
             <div className="p-3 rounded-2xl">
-              <div className="h-[260px] relative">
+              <div className="h-[280px] relative">
                 <div
-                    className="absolute inset-0 opacity-[0.15]"
-                    style={{
-                      backgroundImage: `radial-gradient(circle at center, #F5D90A 1px, transparent 1px)`,
-                      backgroundSize: "15px  15px",
-                      backgroundPosition: "0 0"
-                    }}
+                  className="absolute inset-0 opacity-[0.08]"
+                  style={{
+                    backgroundImage: `radial-gradient(circle at center, #7C3AED 1px, transparent 1px)`,
+                    backgroundSize: "15px 15px",
+                  }}
                 />
-              <GemScannerVisual />
+                <CuratedFeedsVisual />
               </div>
             </div>
             <div className="p-7 pt-0">
               <h3 className="text-white font-bold text-xl mb-2 flex items-center gap-2">
-                <RiVipDiamondLine className="text-[#3B82F6]" /> Hidden Gem
-                Scanner
+                <RiTrophyLine className="text-[#22C55E]" /> Curated Alpha Feeds
               </h3>
-              <p className="text-[#666] text-sm leading-relaxed">
-                Continuously monitors new launches and surfaces tokens with
-                unusual activity, strong traction, and high Alpha Scores.
+              <p className="text-[#6B6B76] text-sm leading-relaxed">
+                AI automatically generates ranked "Best of the Week" and
+                "Best of the Month" lists, dynamically filtered by performance
+                signals and growth patterns.
               </p>
             </div>
           </motion.div>
 
-          {/* ── Card 3 · Wallet Intelligence (mid-left, 2 cols) ── */}
+          {/* Card 3 · Personalized Watchlist (2 cols) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="md:col-span-2 rounded-3xl border border-[#1E1E1E] bg-gradient-to-b from-[#111] to-[#0A0A0A] flex flex-col overflow-hidden group hover:border-[#A855F7]/20 transition-colors duration-500"
+            className="md:col-span-2 rounded-3xl border border-[#2A2A3A] bg-gradient-to-b from-[#141420] to-[#0D0D14] flex flex-col overflow-hidden group hover:border-[#9F67FF]/25 transition-all duration-500 card-3d"
           >
             <div className="p-3 rounded-2xl">
               <div className="h-[220px] relative">
                 <div
-                    className="absolute inset-0 opacity-[0.15]"
-                    style={{
-                      backgroundImage: `radial-gradient(circle at center, #F5D90A 1px, transparent 1px)`,
-                      backgroundSize: "15px  15px",
-                      backgroundPosition: "0 0"
-                    }}
+                  className="absolute inset-0 opacity-[0.08]"
+                  style={{
+                    backgroundImage: `radial-gradient(circle at center, #7C3AED 1px, transparent 1px)`,
+                    backgroundSize: "15px 15px",
+                  }}
                 />
-              <WalletVisual />
+                <WatchlistVisual />
               </div>
             </div>
             <div className="p-7 pt-2">
               <h3 className="text-white font-bold text-lg mb-2 flex items-center gap-2">
-                <RiWallet3Line className="text-[#A855F7]" /> Wallet Intelligence
+                <RiEyeLine className="text-[#9F67FF]" /> Personalized Watchlist
               </h3>
-              <p className="text-[#666] text-sm leading-relaxed">
-                Track smart wallets. See what top investors are buying before the
-                market reacts.
+              <p className="text-[#6B6B76] text-sm leading-relaxed">
+                AI builds a custom feed that adapts to your search behavior,
+                wallet activity, and interests over time.
               </p>
             </div>
           </motion.div>
 
-          {/* ── Card 4 · Alpha Alerts (mid-center, 2 cols) ── */}
+          {/* Card 4 · Real-Time Signal Alerts (2 cols) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="md:col-span-2 rounded-3xl border border-[#1E1E1E] bg-gradient-to-b from-[#111] to-[#0A0A0A] flex flex-col overflow-hidden group hover:border-[#F97316]/20 transition-colors duration-500"
+            className="md:col-span-2 rounded-3xl border border-[#2A2A3A] bg-gradient-to-b from-[#141420] to-[#0D0D14] flex flex-col overflow-hidden group hover:border-[#F97316]/25 transition-all duration-500 card-3d"
           >
             <div className="p-3 rounded-2xl">
               <div className="h-[220px] relative">
                 <div
-                    className="absolute inset-0 opacity-[0.15]"
-                    style={{
-                      backgroundImage: `radial-gradient(circle at center, #F5D90A 1px, transparent 1px)`,
-                      backgroundSize: "15px  15px",
-                      backgroundPosition: "0 0"
-                    }}
+                  className="absolute inset-0 opacity-[0.08]"
+                  style={{
+                    backgroundImage: `radial-gradient(circle at center, #7C3AED 1px, transparent 1px)`,
+                    backgroundSize: "15px 15px",
+                  }}
                 />
-              <AlertsVisual />
+                <AlertsVisual />
               </div>
             </div>
             <div className="p-7 pt-2">
               <h3 className="text-white font-bold text-lg mb-2 flex items-center gap-2">
-                <RiNotification3Line className="text-[#F97316]" /> Real-Time
-                Alerts
+                <RiNotification3Line className="text-[#F97316]" /> Signal Intelligence
               </h3>
-              <p className="text-[#666] text-sm leading-relaxed">
-                Instant notifications for whale buys, liquidity spikes, and smart
-                money movements.
+              <p className="text-[#6B6B76] text-sm leading-relaxed">
+                Instant alerts for whale accumulation, liquidity changes,
+                trend acceleration, and early-stage momentum signals.
               </p>
             </div>
           </motion.div>
 
-          {/* ── Card 5 · Live Dashboard (mid-right, 2 cols, row-span-2) ── */}
+          {/* Card 5 · Deep AI Forecast Reports (2 cols) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="md:col-span-2 md:row-span-1 rounded-3xl border border-[#1E1E1E] bg-gradient-to-b from-[#111] to-[#0A0A0A] flex flex-col overflow-hidden group hover:border-[#22C55E]/20 transition-colors duration-500"
+            className="md:col-span-2 md:row-span-1 rounded-3xl border border-[#2A2A3A] bg-gradient-to-b from-[#141420] to-[#0D0D14] flex flex-col overflow-hidden group hover:border-[#7C3AED]/25 transition-all duration-500 card-3d"
           >
             <div className="p-3 rounded-2xl">
               <div className="h-[220px] relative">
                 <div
-                    className="absolute inset-0 opacity-[0.15]"
-                    style={{
-                      backgroundImage: `radial-gradient(circle at center, #F5D90A 1px, transparent 1px)`,
-                      backgroundSize: "15px  15px",
-                      backgroundPosition: "0 0"
-                    }}
+                  className="absolute inset-0 opacity-[0.08]"
+                  style={{
+                    backgroundImage: `radial-gradient(circle at center, #7C3AED 1px, transparent 1px)`,
+                    backgroundSize: "15px 15px",
+                  }}
                 />
-              <ChartVisual />
+                <ReportsVisual />
               </div>
             </div>
             <div className="p-7 pt-0">
               <h3 className="text-white font-bold text-lg mb-2 flex items-center gap-2">
-                <RiLineChartLine className="text-[#22C55E]" /> Advanced Tracking
+                <RiFileChartLine className="text-[#7C3AED]" /> Deep AI Reports
               </h3>
-              <p className="text-[#666] text-sm leading-relaxed">
-                Real-time charts, and comprehensive volume tracking built directly into the platform.
+              <p className="text-[#6B6B76] text-sm leading-relaxed">
+                Forward-looking insights with growth potential analysis,
+                narrative trends, and risk forecasting — unlock with $CORA.
               </p>
             </div>
           </motion.div>

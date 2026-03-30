@@ -9,12 +9,12 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "AlphaScope — AI-Powered Crypto Research",
-  description: "Discover early-stage tokens and hidden opportunities before they become widely known. AI-powered on-chain research, gem scanning, and wallet intelligence.",
-  keywords: ["crypto", "AI", "token research", "blockchain", "DeFi", "alpha", "gem scanner"],
+  title: "ChainOracle ($CORA) — AI Predictive Analytics",
+  description: "Predict the next trending crypto before everyone else. AI-powered forecasting, curated alpha feeds, personalized watchlists, and real-time signal intelligence.",
+  keywords: ["crypto", "AI", "predictive analytics", "blockchain", "DeFi", "forecast", "CORA", "ChainOracle", "token prediction"],
   openGraph: {
-    title: "AlphaScope — AI-Powered Crypto Research",
-    description: "Discover early-stage tokens and hidden opportunities with AI-powered on-chain analytics.",
+    title: "ChainOracle ($CORA) — AI Predictive Analytics",
+    description: "Predict the next trending crypto before everyone else with AI-powered forecasting and signal intelligence.",
     type: "website",
   },
 };

@@ -4,12 +4,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
-import Image from "next/image";
 
 const navLinks = [
   { name: "Features", href: "#features" },
   { name: "How It Works", href: "#how-it-works" },
-  { name: "$ASCP", href: "#token" },
+  { name: "$CORA", href: "#token" },
 ];
 
 export default function Navbar() {
@@ -29,19 +28,24 @@ export default function Navbar() {
         <motion.nav
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} // smooth spring-like ease
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className={`relative flex items-center justify-between w-full max-w-5xl px-4 py-2.5 mx-auto transition-all duration-500 pointer-events-auto rounded-full ${
             scrolled || mobileOpen
-              ? "bg-[#111111]/60 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
-              : "bg-[#0B0B0B]/30 backdrop-blur-lg border border-white/5 shadow-[0_4px_24px_rgba(0,0,0,0.2)]"
+              ? "bg-[#0D0D14]/70 backdrop-blur-2xl border border-[#7C3AED]/15 shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
+              : "bg-[#0A0A0F]/30 backdrop-blur-lg border border-white/5 shadow-[0_4px_24px_rgba(0,0,0,0.2)]"
           }`}
           style={{
-            boxShadow: scrolled || mobileOpen ? "inset 0 1px 0 0 rgba(255, 255, 255, 0.1), 0 8px 32px rgba(0,0,0,0.6)" : "none"
+            boxShadow: scrolled || mobileOpen ? "inset 0 1px 0 0 rgba(124,58,237,0.1), 0 8px 32px rgba(0,0,0,0.6)" : "none"
           }}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 relative z-10 group pl-2">
-          <Image src="/logo.png" alt="Logo" width={150} height={50} className="scale-110" /> 
+          <Link href="/" className="flex items-center gap-2.5 relative z-10 group pl-2">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#7C3AED] to-[#5B21B6] flex items-center justify-center shadow-lg shadow-[#7C3AED]/20 group-hover:shadow-[#7C3AED]/40 transition-shadow">
+              <span className="text-white font-extrabold text-xs">CO</span>
+            </div>
+            <span className="text-white font-bold text-lg tracking-tight">
+              Chain<span className="text-[#7C3AED]">Oracle</span>
+            </span>
           </Link>
 
           {/* Desktop Links - Centered */}
@@ -50,7 +54,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="px-5 py-2 text-[#AAA] hover:text-[#F5D90A] hover:bg-white/[0.04] rounded-full transition-all text-sm font-medium"
+                className="px-5 py-2 text-[#A1A1AA] hover:text-[#9F67FF] hover:bg-white/[0.04] rounded-full transition-all text-sm font-medium"
               >
                 {link.name}
               </a>
@@ -62,7 +66,7 @@ export default function Navbar() {
             <div className="hidden md:block">
               <Link
                 href="/app"
-                className="px-6 py-2.5 bg-gradient-to-r from-[#F5D90A] to-[#FFEA5C] text-[#0B0B0B] rounded-full font-bold text-sm hover:scale-105 transition-transform shadow-[0_0_20px_rgba(245,217,10,0.3)] hover:shadow-[0_0_25px_rgba(245,217,10,0.5)] block"
+                className="btn-3d btn-3d-sm block"
               >
                 Launch App
               </Link>
@@ -88,9 +92,9 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed top-[5.5rem] left-4 right-4 z-40 bg-[#111111]/80 backdrop-blur-3xl border border-white/10 rounded-[2rem] p-6 md:hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)]"
+            className="fixed top-[5.5rem] left-4 right-4 z-40 bg-[#141420]/90 backdrop-blur-3xl border border-[#7C3AED]/15 rounded-[2rem] p-6 md:hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)]"
             style={{
-              boxShadow: "inset 0 1px 0 0 rgba(255, 255, 255, 0.1), 0 20px 60px rgba(0,0,0,0.8)"
+              boxShadow: "inset 0 1px 0 0 rgba(124,58,237,0.1), 0 20px 60px rgba(0,0,0,0.8)"
             }}
           >
             <div className="flex flex-col gap-2">
@@ -99,7 +103,7 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-[#CCC] hover:text-[#F5D90A] hover:bg-white/[0.04] px-4 py-3.5 rounded-xl text-lg font-medium transition-all"
+                  className="text-[#CCC] hover:text-[#9F67FF] hover:bg-white/[0.04] px-4 py-3.5 rounded-xl text-lg font-medium transition-all"
                 >
                   {link.name}
                 </a>
@@ -108,7 +112,7 @@ export default function Navbar() {
                 <Link
                   href="/app"
                   onClick={() => setMobileOpen(false)}
-                  className="block w-full py-4 bg-gradient-to-r from-[#F5D90A] to-[#FFEA5C] text-[#0B0B0B] rounded-xl font-bold text-center shadow-[0_0_20px_rgba(245,217,10,0.2)] hover:scale-[1.02] transition-transform"
+                  className="btn-3d block w-full py-4 text-center"
                 >
                   Launch App
                 </Link>

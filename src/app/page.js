@@ -6,9 +6,9 @@ import TokenSection from "@/components/landing/TokenSection";
 import CTA from "@/components/landing/CTA";
 import Footer from "@/components/landing/Footer";
 
-export default function LandingPage() {
+export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0B0B0B]">
+    <main className="min-h-screen bg-[#0A0A0F]">
       <Navbar />
       <Hero />
       <Features />

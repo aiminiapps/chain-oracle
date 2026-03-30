@@ -33,29 +33,29 @@ export default function Topbar() {
   }
 
   return (
-    <header className="sticky top-0 z-30 bg-[#0B0B0B]/80 backdrop-blur-xl border-b border-[#2A2A2A]">
+    <header className="sticky top-0 z-30 bg-[#0A0A0F]/80 backdrop-blur-xl border-b border-[#2A2A3A]">
       <div className="flex items-center justify-between px-4 lg:px-6 py-3">
         <div className="flex opacity-0 items-center gap-3 flex-1 max-w-md ml-12 lg:ml-0">
           <div className="relative w-full">
-            <RiSearchLine className="absolute left-3 top-1/2 -translate-y-1/2 text-[#888] text-sm" />
+            <RiSearchLine className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6B6B76] text-sm" />
             <input
               type="text"
               placeholder="Search tokens, wallets..."
-              className="w-full pl-9 pr-4 py-2 rounded-xl bg-[#151515] border border-[#2A2A2A] text-white text-sm placeholder:text-[#666] focus:outline-none focus:border-[#F5D90A]/50 transition-colors"
+              className="w-full pl-9 pr-4 py-2 rounded-xl bg-[#141420] border border-[#2A2A3A] text-white text-sm placeholder:text-[#6B6B76] focus:outline-none focus:border-[#7C3AED]/50 transition-colors"
             />
           </div>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl bg-[#151515] border border-[#2A2A2A]">
-            <RiCoinLine className="text-[#F5D90A] text-sm" />
-            <span className="text-[#F5D90A] font-semibold text-sm">
+          <div className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl bg-[#141420] border border-[#2A2A3A]">
+            <RiCoinLine className="text-[#7C3AED] text-sm" />
+            <span className="text-[#7C3AED] font-semibold text-sm">
               {loaded ? balance.toLocaleString() : "..."}
             </span>
-            <span className="text-[#888] text-xs">ASCP</span>
+            <span className="text-[#6B6B76] text-xs">CORA</span>
           </div>
 
-          <button className="relative w-9 h-9 rounded-xl bg-[#151515] border border-[#2A2A2A] flex items-center justify-center text-[#888] hover:text-white transition-colors">
+          <button className="relative w-9 h-9 rounded-xl bg-[#141420] border border-[#2A2A3A] flex items-center justify-center text-[#A1A1AA] hover:text-white transition-colors">
             <RiNotification3Line className="text-sm" />
           </button>
 
@@ -70,31 +70,31 @@ export default function Topbar() {
                       {/* Wallet button */}
                       <button
                         onClick={() => setDropdownOpen(!dropdownOpen)}
-                        className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#151515] border border-[#2A2A2A] hover:border-[#F5D90A]/30 transition-colors"
+                        className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#141420] border border-[#2A2A3A] hover:border-[#7C3AED]/30 transition-colors"
                       >
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#F5D90A] to-[#F97316]" />
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#7C3AED] to-[#9F67FF]" />
                         <span className="text-white text-sm font-medium hidden sm:block">{account.displayName}</span>
-                        <RiArrowDownSLine className={`text-[#888] text-sm transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
+                        <RiArrowDownSLine className={`text-[#6B6B76] text-sm transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
                       </button>
 
                       {/* Dropdown */}
                       {dropdownOpen && (
-                        <div className="absolute right-0 top-full mt-2 w-72 rounded-2xl border border-[#2A2A2A] bg-[#151515] shadow-2xl overflow-hidden z-50">
+                        <div className="absolute right-0 top-full mt-2 w-72 rounded-2xl border border-[#2A2A3A] bg-[#141420] shadow-2xl overflow-hidden z-50">
                           {/* Header */}
-                          <div className="p-4 border-b border-[#2A2A2A]">
+                          <div className="p-4 border-b border-[#2A2A3A]">
                             <div className="flex items-center gap-3 mb-3">
                               <div className="flex-1 min-w-0">
                                 <p className="text-white text-sm font-semibold">Connected Wallet</p>
-                                <p className="text-[#888] text-xs">{account.displayName}</p>
+                                <p className="text-[#A1A1AA] text-xs">{account.displayName}</p>
                               </div>
                             </div>
 
                             {/* Full address with copy */}
-                            <div className="flex items-center gap-2 p-2 rounded-lg bg-[#0B0B0B] border border-[#2A2A2A]">
-                              <span className="text-[#888] text-xs font-mono truncate flex-1">{account.address}</span>
+                            <div className="flex items-center gap-2 p-2 rounded-lg bg-[#0A0A0F] border border-[#2A2A3A]">
+                              <span className="text-[#A1A1AA] text-xs font-mono truncate flex-1">{account.address}</span>
                               <button
                                 onClick={() => copyAddress(account.address)}
-                                className="text-[#888] hover:text-white transition-colors shrink-0 p-1 rounded-md hover:bg-[#2A2A2A]"
+                                className="text-[#A1A1AA] hover:text-white transition-colors shrink-0 p-1 rounded-md hover:bg-[#2A2A3A]"
                               >
                                 {copied ? <RiCheckLine className="text-[#22C55E] text-sm" /> : <RiFileCopyLine className="text-sm" />}
                               </button>
@@ -102,10 +102,10 @@ export default function Topbar() {
                           </div>
 
                           {/* Network */}
-                          <div className="p-3 border-b border-[#2A2A2A]">
+                          <div className="p-3 border-b border-[#2A2A3A]">
                             <button
                               onClick={() => { openChainModal(); setDropdownOpen(false); }}
-                              className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-[#1E1E1E] transition-colors"
+                              className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-[#1C1C2E] transition-colors"
                             >
                               <div className="flex items-center gap-2">
                                 {chain.hasIcon && chain.iconUrl && (
@@ -114,7 +114,7 @@ export default function Topbar() {
                                 <span className="text-white text-sm font-medium">{chain.name}</span>
                               </div>
                               {chain.unsupported ? (
-                                <span className="text-[#FF4444] text-xs font-medium px-2 py-0.5 rounded-lg bg-[#FF4444]/10">Wrong Network</span>
+                                <span className="text-[#EF4444] text-xs font-medium px-2 py-0.5 rounded-lg bg-[#EF4444]/10">Wrong Network</span>
                               ) : (
                                 <span className="text-[#22C55E] text-xs font-medium px-2 py-0.5 rounded-lg bg-[#22C55E]/10">Connected</span>
                               )}
@@ -123,22 +123,22 @@ export default function Topbar() {
 
                           {/* Balance */}
                           {account.displayBalance && (
-                            <div className="px-3 py-2 border-b border-[#2A2A2A]">
+                            <div className="px-3 py-2 border-b border-[#2A2A3A]">
                               <div className="flex items-center justify-between p-2.5">
-                                <span className="text-[#888] text-sm">Balance</span>
+                                <span className="text-[#A1A1AA] text-sm">Balance</span>
                                 <span className="text-white text-sm font-semibold">{account.displayBalance}</span>
                               </div>
                             </div>
                           )}
 
                           {/* Explorer link */}
-                          <div className="p-3 border-b border-[#2A2A2A]">
+                          <div className="p-3 border-b border-[#2A2A3A]">
                             <a
                               href={`https://bscscan.com/address/${account.address}`}
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={() => setDropdownOpen(false)}
-                              className="w-full flex items-center gap-2 p-2.5 rounded-xl hover:bg-[#1E1E1E] transition-colors text-[#888] hover:text-white"
+                              className="w-full flex items-center gap-2 p-2.5 rounded-xl hover:bg-[#1C1C2E] transition-colors text-[#A1A1AA] hover:text-white"
                             >
                               <RiWallet3Line className="text-sm" />
                               <span className="text-sm">View on BscScan</span>
@@ -149,7 +149,7 @@ export default function Topbar() {
                           <div className="p-3">
                             <button
                               onClick={() => { disconnect(); setDropdownOpen(false); }}
-                              className="w-full flex items-center gap-2 p-2.5 rounded-xl hover:bg-[#FF4444]/10 transition-colors text-[#FF4444]"
+                              className="w-full flex items-center gap-2 p-2.5 rounded-xl hover:bg-[#EF4444]/10 transition-colors text-[#EF4444]"
                             >
                               <RiLogoutBoxRLine className="text-sm" />
                               <span className="text-sm font-medium">Disconnect Wallet</span>
@@ -159,7 +159,7 @@ export default function Topbar() {
                       )}
                     </div>
                   ) : (
-                    <button onClick={openConnectModal} className="px-4 py-2 rounded-xl bg-[#F5D90A] text-[#0B0B0B] font-semibold text-sm hover:bg-[#F5D90A]/90 transition-colors">
+                    <button onClick={openConnectModal} className="btn-3d btn-3d-sm">
                       Connect
                     </button>
                   )}

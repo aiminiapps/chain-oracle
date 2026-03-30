@@ -1,15 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { RiTwitterXLine, RiArrowRightUpLine, RiBnbFill } from "react-icons/ri";
 
 const footerLinks = {
   Product: [
-    { name: "AI Analyzer", href: "/app/analyzer" },
-    { name: "Gem Scanner", href: "/app/gems" },
+    { name: "AI Forecast", href: "/app/analyzer" },
+    { name: "Predictions", href: "/app/gems" },
     { name: "Wallet Tracker", href: "/app/wallets" },
-    { name: "Alpha Alerts", href: "/app/alerts" },
+    { name: "Signal Alerts", href: "/app/alerts" },
   ],
   Community: [
     { name: "Twitter / X", href: "https://x.com/ascp_ai" },
@@ -21,7 +20,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[#111] bg-[#0B0B0B] pt-24 pb-12 relative overflow-hidden"> 
+    <footer className="border-t border-[#141420] bg-[#0A0A0F] pt-24 pb-12 relative overflow-hidden"> 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Main Footer Content */}
@@ -29,25 +28,30 @@ export default function Footer() {
           
           {/* Brand & Socials */}
           <div className="max-w-sm">
-            <Link href="/" className="flex items-center gap-3 mb-6 group inline-flex">
-            <Image src="/logo.png" alt="Logo" width={150} height={50} className="scale-110 pl-3" /> 
+            <Link href="/" className="flex items-center gap-2.5 mb-6 group inline-flex">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#7C3AED] to-[#5B21B6] flex items-center justify-center shadow-lg shadow-[#7C3AED]/20">
+                <span className="text-white font-extrabold text-xs">CO</span>
+              </div>
+              <span className="text-white font-bold text-lg tracking-tight">
+                Chain<span className="text-[#7C3AED]">Oracle</span>
+              </span>
             </Link>
-            <p className="text-[#888] text-sm leading-relaxed mb-8">
-              The premier AI-powered crypto research platform. Discover early-stage tokens, analyze smart wallets, and unlock hidden market opportunities before the crowd.
+            <p className="text-[#A1A1AA] text-sm leading-relaxed mb-8">
+              The premier AI-powered predictive analytics platform. Forecast token trends, discover alpha opportunities, and receive real-time signal intelligence before the crowd.
             </p>
             
-            {/* Minimal Socials (X and BscScan) */}
+            {/* Minimal Socials */}
             <div className="flex flex-wrap items-center gap-4">
               <a
                 href="https://x.com/ascp_ai"
-                className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#0B0B0B] border border-[#2A2A2A] text-[#AAA] hover:text-[#F5D90A] hover:border-[#F5D90A]/40 hover:bg-[#F5D90A]/5 transition-all duration-300"
+                className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#0A0A0F] border border-[#2A2A3A] text-[#A1A1AA] hover:text-[#9F67FF] hover:border-[#7C3AED]/40 hover:bg-[#7C3AED]/5 transition-all duration-300"
               >
                 <RiTwitterXLine className="text-lg" />
                 <span className="text-sm font-medium">Twitter / X</span>
               </a>
               <a
                 href="#"
-                className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#0B0B0B] border border-[#2A2A2A] text-[#AAA] hover:text-[#F5D90A] hover:border-[#F5D90A]/40 hover:bg-[#F5D90A]/5 transition-all duration-300 group"
+                className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#0A0A0F] border border-[#2A2A3A] text-[#A1A1AA] hover:text-[#9F67FF] hover:border-[#7C3AED]/40 hover:bg-[#7C3AED]/5 transition-all duration-300 group"
               >
                 <div className="text-lg">
                 <RiBnbFill />
@@ -70,7 +74,7 @@ export default function Footer() {
                     <li key={link.name}>
                       <Link
                         href={link.href}
-                        className="text-[#888] text-sm hover:text-[#F5D90A] hover:translate-x-1 inline-block transition-all duration-300"
+                        className="text-[#A1A1AA] text-sm hover:text-[#9F67FF] hover:translate-x-1 inline-block transition-all duration-300"
                       >
                         {link.name}
                       </Link>
@@ -82,10 +86,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Global Bottom / Copyright */}
-        <div className="pt-8 border-t border-[#1A1A1A] flex items-center justify-center text-center">
-          <p className="text-[#666] text-sm tracking-wide">
-            © {currentYear} AlphaScope. All rights reserved.
+        {/* Copyright */}
+        <div className="pt-8 border-t border-[#1C1C2E] flex items-center justify-center text-center">
+          <p className="text-[#6B6B76] text-sm tracking-wide">
+            © {currentYear} ChainOracle. All rights reserved.
           </p>
         </div>
       </div>
