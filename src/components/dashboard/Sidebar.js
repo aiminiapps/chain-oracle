@@ -18,6 +18,7 @@ import {
 } from "react-icons/ri";
 import { NAV_ITEMS } from "@/lib/constants";
 import { useTokens } from "@/context/TokenContext";
+import Image from "next/image";
 
 /* ══════════════════════════════════════════════
    Split nav items into two groups:
@@ -117,18 +118,7 @@ export default function Sidebar() {
       {/* ─── Logo Bar ─── */}
       <div className="px-4 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#9F67FF] to-[#7C3AED] flex items-center justify-center shrink-0 shadow-lg shadow-[#7C3AED]/20 group-hover:shadow-[#7C3AED]/40 transition-shadow duration-300">
-            <span className="text-white font-extrabold text-sm tracking-tight">CO</span>
-          </div>
-          {(!collapsed || mobile) && (
-            <motion.span
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-white font-bold text-lg tracking-tight"
-            >
-              Chain<span className="text-[#9F67FF]">Oracle</span>
-            </motion.span>
-          )}
+          <Image src="/logo.png" alt="Logo" width={160} height={50} className="pl-2"/>
         </Link>
         {!mobile && (
           <button
@@ -234,9 +224,7 @@ export default function Sidebar() {
             {/* Logo + Title */}
             <div className="relative z-10">
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/10">
-                  <span className="text-white font-bold text-[10px]">CO</span>
-                </div>
+                <Image src="/agent.png" alt="Logo" width={32} height={32} />
                 <div>
                   <h4 className="text-white font-bold text-sm leading-tight">ChainOracle</h4>
                   <p className="text-[#B8B8CC] text-[10px] leading-tight">$CORA</p>
