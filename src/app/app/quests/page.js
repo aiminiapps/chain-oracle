@@ -7,7 +7,7 @@ import {
   RiGroupLine, RiSearchLine, RiVipDiamondLine, RiNotification3Line,
   RiWallet3Line, RiCalendarLine, RiShareLine,
   RiCheckLine, RiCoinLine, RiArrowRightLine, RiStarLine,
-  RiExternalLinkLine, RiLock2Line, RiTaskLine,
+  RiExternalLinkLine, RiLock2Line, RiTaskLine, RiLoader4Line
 } from "react-icons/ri";
 import { useTokens } from "@/context/TokenContext";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
