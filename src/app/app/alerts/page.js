@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   RiAlarmWarningLine, RiArrowUpLine, RiBarChartLine,
   RiVipCrownLine, RiSparklingLine, RiSettings3Line,
-  RiToggleLine, RiToggleFill, RiLoader4Line, RiExternalLinkLine,
+  RiCheckLine, RiCloseLine, RiLoader4Line, RiExternalLinkLine,
+  RiPulseLine, RiArrowUpSLine, RiArrowDownSLine,
 } from "react-icons/ri";
 import { useTokens } from "@/context/TokenContext";
 import { getTrendingTokens, getTopBoostedTokens, searchTokens, formatPairData, formatCurrency, getChainLabel } from "@/lib/dexscreener";
@@ -33,10 +34,13 @@ function getSeverity(token) {
 }
 
 const SEVERITY_STYLES = {
-  high: { bg: "bg-[#FF4444]/10", text: "text-[#FF4444]", label: "High" },
-  medium: { bg: "bg-[#F97316]/10", text: "text-[#F97316]", label: "Medium" },
-  low: { bg: "bg-[#22C55E]/10", text: "text-[#22C55E]", label: "Low" },
+  high: { bg: "bg-[#FF4444]/10 border-[#FF4444]/30", text: "text-[#FF4444]", label: "High Priority" },
+  medium: { bg: "bg-[#F97316]/10 border-[#F97316]/30", text: "text-[#F97316]", label: "Medium Alert" },
+  low: { bg: "bg-[#22C55E]/10 border-[#22C55E]/30", text: "text-[#22C55E]", label: "Low Impact" },
 };
+
+const CARD = "rounded-2xl border border-dashed border-[#2A2A3A]/60 bg-[#0D0D14] relative overflow-hidden";
+const CARD_INNER = "rounded-xl border border-[#1E1E2E] bg-[#0A0A0F]";
 
 export default function AlertsPage() {
   const { alertSettings, updateAlertSettings } = useTokens();
@@ -96,74 +100,131 @@ export default function AlertsPage() {
 
   return (
     <div className="space-y-6">
+      {/* ═══ HEADER ═══ */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-white">Signal Alerts</h1>
-          <p className="text-[#6B6B76] text-sm mt-1">Live signals from on-chain activity</p>
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-[#F97316]/10 flex items-center justify-center">
+            <RiAlarmWarningLine className="text-[#F97316] text-sm" />
+          </div>
+          <div>
+            <h1 className="text-xl font-bold text-white">Signal Alerts</h1>
+            <p className="text-[#555] text-xs mt-0.5">Live on-chain anomalies & algorithmic triggers</p>
+          </div>
         </div>
-        <button onClick={() => setShowSettings(!showSettings)} className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[#2A2A3A] bg-[#141420] text-[#A1A1AA] hover:text-white hover:border-[#7C3AED]/30 text-sm transition-colors">
-          <RiSettings3Line /> Settings
+        <button onClick={() => setShowSettings(!showSettings)} className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${showSettings ? "bg-[#F97316]/10 text-[#F97316] border border-dashed border-[#F97316]/30" : "bg-[#0D0D14] text-[#8E8E9A] border border-dashed border-[#2A2A3A]/60 hover:text-white hover:border-[#F97316]/30"}`}>
+          <RiSettings3Line className={showSettings ? "animate-spin-slow" : ""} /> Config
         </button>
       </div>
 
-      {showSettings && (
-        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="p-5 rounded-2xl border border-[#2A2A3A] bg-[#141420]">
-          <h3 className="text-white font-semibold mb-4">Alert Configuration</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {Object.entries(ALERT_TYPE_META).map(([key, val]) => (
-              <button key={key} onClick={() => toggleSetting(key)} className="flex items-center justify-between p-3 rounded-xl bg-[#0A0A0F] border border-[#2A2A3A] hover:border-[#7C3AED]/20 transition-colors">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full" style={{ backgroundColor: val.color }} />
-                  <span className="text-white text-sm">{val.label}</span>
-                </div>
-                {alertSettings[key] ? <RiToggleFill className="text-[#7C3AED] text-xl" /> : <RiToggleLine className="text-[#6B6B76] text-xl" />}
-              </button>
-            ))}
-          </div>
-        </motion.div>
-      )}
+      {/* ═══ SETTINGS PANEL ═══ */}
+      <AnimatePresence>
+        {showSettings && (
+          <motion.div initial={{ opacity: 0, height: 0, scaleY: 0.95 }} animate={{ opacity: 1, height: "auto", scaleY: 1 }} exit={{ opacity: 0, height: 0, scaleY: 0.95 }} className="origin-top overflow-hidden">
+            <div className={`p-5 ${CARD} mb-6`}>
+              <h3 className="text-white font-semibold text-sm mb-4 flex items-center gap-2"><RiPulseLine className="text-[#F97316]" /> Notification Matrix</h3>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 relative z-10">
+                {Object.entries(ALERT_TYPE_META).map(([key, val]) => {
+                  const isActive = alertSettings[key];
+                  return (
+                    <button key={key} onClick={() => toggleSetting(key)} className={`flex items-center justify-between p-3.5 ${CARD_INNER} transition-all duration-300 ${isActive ? "border-[#2A2A3A] bg-[#0A0A0F]" : "opacity-60 grayscale hover:grayscale-0 hover:opacity-100"}`}>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: `${val.color}15`, color: val.color }}>
+                          <val.icon className="text-sm" />
+                        </div>
+                        <span className="text-white text-xs font-semibold">{val.label}</span>
+                      </div>
+                      <div className={`w-8 h-5 rounded-full relative transition-colors duration-300 ${isActive ? "bg-[#F97316]" : "bg-[#1E1E2E]"}`}>
+                        <div className={`absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white transition-transform duration-300 shadow-sm ${isActive ? "translate-x-3" : "translate-x-0"}`} />
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
+      {/* ═══ ALERTS FEED ═══ */}
       {loading ? (
-        <div className="flex items-center justify-center py-20">
+        <div className={`flex items-center justify-center py-20 ${CARD}`}>
           <div className="text-center">
-            <RiLoader4Line className="text-[#7C3AED] text-3xl animate-spin mx-auto mb-3" />
-            <p className="text-[#6B6B76] text-sm">Fetching live signals...</p>
+             <div className="w-12 h-12 rounded-2xl bg-[#F97316]/10 flex items-center justify-center mx-auto mb-4">
+              <RiLoader4Line className="text-[#F97316] text-2xl animate-spin" />
+            </div>
+            <p className="text-[#8E8E9A] text-sm font-medium">Scanning mempool for signals...</p>
+            <p className="text-[#555] text-xs">Processing algorithmic anomalies</p>
           </div>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-4">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[#555] text-[10px] uppercase font-bold tracking-wider">Live Feed ({filtered.length})</span>
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
+              <span className="text-[#8E8E9A] text-[10px] font-medium uppercase tracking-wider">Connected</span>
+            </div>
+          </div>
+          
           {filtered.map((alert, i) => {
             const typeMeta = ALERT_TYPE_META[alert.alertType] || {};
             const Icon = typeMeta.icon || RiAlarmWarningLine;
             const severity = SEVERITY_STYLES[alert.severity];
+            
             return (
-              <motion.div key={alert.address + i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3, delay: i * 0.04 }} className="p-4 rounded-2xl border border-[#2A2A3A] bg-[#141420] card-hover">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: `${typeMeta.color || "#888"}15` }}>
-                    <Icon className="text-lg" style={{ color: typeMeta.color || "#888" }} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <h3 className="text-white font-semibold text-sm">{alert.name} ({alert.symbol})</h3>
-                          <span className="text-[10px] px-1.5 py-0.5 rounded font-medium" style={{ backgroundColor: `${typeMeta.color}20`, color: typeMeta.color }}>{typeMeta.label}</span>
-                          <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${severity.bg} ${severity.text}`}>{severity.label}</span>
+              <motion.div key={alert.address + i} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: i * 0.04 }} 
+                className={`group ${CARD} hover:border-[#2A2A3A] transition-all`}>
+                
+                {/* Severity glow line */}
+                <div className={`absolute top-0 left-0 w-1 h-full ${alert.severity === 'high' ? 'bg-[#FF4444]' : alert.severity === 'medium' ? 'bg-[#F97316]' : 'bg-[#22C55E]'}`} />
+                
+                <div className="p-4 sm:p-5">
+                  <div className="flex flex-col sm:flex-row items-start gap-4">
+                    
+                    {/* Icon */}
+                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ring-1 ring-[#1E1E2E] bg-[#0A0A0F]" style={{ boxShadow: `inset 0 0 20px ${typeMeta.color}15` }}>
+                      <Icon className="text-xl" style={{ color: typeMeta.color || "#888" }} />
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="flex-1 min-w-0 w-full">
+                      <div className="flex items-start justify-between gap-3 mb-2">
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                            <h3 className="text-white font-bold text-sm truncate mr-1">{alert.name}</h3>
+                            <span className="text-[#8E8E9A] text-[11px] font-mono">{alert.symbol}</span>
+                            <span className="text-[9px] px-1.5 py-0.5 rounded border border-dashed uppercase font-bold tracking-wider" style={{ borderColor: `${typeMeta.color}30`, backgroundColor: `${typeMeta.color}10`, color: typeMeta.color }}>{typeMeta.label}</span>
+                            <span className={`text-[9px] px-1.5 py-0.5 rounded border border-dashed uppercase font-bold tracking-wider ${severity.bg} ${severity.text}`}>{severity.label}</span>
+                          </div>
+                          <p className="text-[#8E8E9A] text-xs leading-relaxed max-w-2xl">{alert.description}</p>
                         </div>
-                        <p className="text-[#A1A1AA] text-sm">{alert.description}</p>
+                        
+                        <div className="text-right shrink-0">
+                          <span className="text-white text-sm font-bold block mb-0.5">{alert.price}</span>
+                          <span className={`flex items-center justify-end gap-0.5 text-[10px] font-semibold ${alert.positive ? "text-[#22C55E]" : "text-[#FF4444]"}`}>
+                            {alert.positive ? <RiArrowUpSLine /> : <RiArrowDownSLine />}{Math.abs(alert.priceChange24h || 0).toFixed(1)}%
+                          </span>
+                        </div>
                       </div>
-                      <span className="text-white text-sm font-medium shrink-0">{alert.price}</span>
+                      
+                      {/* Footer metrics */}
+                      <div className="mt-3.5 pt-3.5 border-t border-dashed border-[#1E1E2E] flex items-center gap-3 sm:gap-6 flex-wrap">
+                        <div className="flex items-center gap-1.5 text-[11px]">
+                          <span className="text-[#555] uppercase tracking-wider font-semibold">Vol</span>
+                          <span className="text-[#8E8E9A] font-medium">{formatCurrency(alert.volume24h)}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-[11px]">
+                          <span className="text-[#555] uppercase tracking-wider font-semibold">Network</span>
+                          <span className="text-[#8E8E9A] font-medium">{getChainLabel(alert.chain)}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-[11px] ml-auto">
+                           <a href={alert.url} target="_blank" rel="noopener noreferrer" className="text-[#9F67FF] flex items-center gap-1 font-semibold hover:underline">
+                            View Evidence <RiExternalLinkLine className="text-[10px]" />
+                          </a>
+                        </div>
+                      </div>
                     </div>
-                    <div className="mt-2 flex items-center gap-3 flex-wrap">
-                      <span className={`text-xs font-medium ${alert.positive ? "text-[#22C55E]" : "text-[#FF4444]"}`}>
-                        {alert.positive ? "+" : ""}{alert.priceChange24h?.toFixed(1)}% 24h
-                      </span>
-                      <span className="text-[#6B6B76] text-xs">Vol: {formatCurrency(alert.volume24h)}</span>
-                      <span className="text-[#6B6B76] text-xs">{getChainLabel(alert.chain)}</span>
-                      <a href={alert.url} target="_blank" rel="noopener noreferrer" className="text-[#9F67FF] text-xs flex items-center gap-1 hover:underline">
-                        DexScreener <RiExternalLinkLine className="text-[10px]" />
-                      </a>
-                    </div>
+                    
                   </div>
                 </div>
               </motion.div>
@@ -172,11 +233,14 @@ export default function AlertsPage() {
         </div>
       )}
 
+      {/* ═══ EMPTY STATE ═══ */}
       {!loading && filtered.length === 0 && (
-        <div className="flex flex-col items-center justify-center py-20 text-center">
-          <RiAlarmWarningLine className="text-[#6B6B76] text-3xl mb-3" />
-          <h3 className="text-white font-semibold mb-1">No Active Signals</h3>
-          <p className="text-[#6B6B76] text-sm">Enable alert types in settings to see signals</p>
+        <div className={`flex flex-col items-center justify-center py-20 text-center ${CARD}`}>
+           <div className="w-16 h-16 rounded-3xl bg-[#0A0A0F] border border-dashed border-[#2A2A3A] flex items-center justify-center mx-auto mb-4">
+            <RiAlarmWarningLine className="text-[#555] text-2xl" />
+          </div>
+          <h3 className="text-white font-semibold text-sm mb-1">No Active Signals</h3>
+          <p className="text-[#8E8E9A] text-xs max-w-sm mx-auto leading-relaxed">The algorithm hasn't detected any anomalies matching your active configuration. Check your settings to enable more alert types.</p>
         </div>
       )}
     </div>
