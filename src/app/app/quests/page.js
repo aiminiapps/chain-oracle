@@ -28,10 +28,10 @@ const CATEGORIES = [
 ];
 
 const ALL_QUESTS = [
-  { id: "q1", title: "Follow ChainOracle on X", desc: "Follow our official account and stay updated", category: "social", icon: "twitter", reward: 100, link: "https://x.com/ascp_ai" },
-  { id: "q2", title: "Like & Repost Launch Tweet", desc: "Engage with our launch announcement", category: "social", icon: "like", reward: 50, link: "https://x.com/ascp_ai" },
-  { id: "q3", title: "Join Telegram Community", desc: "Join our Telegram group for alpha leaks", category: "social", icon: "telegram", reward: 100, link: "https://x.com/ascp_ai" },
-  { id: "q5", title: "Share ChainOracle with Friends", desc: "Share a referral link on any platform", category: "social", icon: "share", reward: 75, link: "https://x.com/intent/tweet?text=Check%20out%20ChainOracle%20-%20AI-powered%20predictive%20analytics%20platform!%20%40ascp_ai" },
+  { id: "q1", title: "Follow ChainOracle on X", desc: "Follow our official account and stay updated", category: "social", icon: "twitter", reward: 100, link: "https://x.com/aichainoracle" },
+  { id: "q2", title: "Like & Repost Launch Tweet", desc: "Engage with our launch announcement", category: "social", icon: "like", reward: 50, link: "https://x.com/aichainoracle" },
+  { id: "q3", title: "Join Telegram Community", desc: "Join our Telegram group for alpha leaks", category: "social", icon: "telegram", reward: 100, link: "https://x.com/aichainoracle" },
+  { id: "q5", title: "Share ChainOracle with Friends", desc: "Share a referral link on any platform", category: "social", icon: "share", reward: 75, link: "https://x.com/intent/tweet?text=Check%20out%20ChainOracle%20-%20AI-powered%20predictive%20analytics%20platform!%20%40aichainoracle" },
   { id: "q6", title: "Run Your First Forecast", desc: "Run the AI Forecast Analyzer on any token", category: "platform", icon: "search", reward: 150, link: null },
   { id: "q7", title: "Explore Oracle Predictions", desc: "Open the Oracle Predictions page", category: "platform", icon: "gem", reward: 50, link: null },
   { id: "q8", title: "Connect Your Wallet", desc: "Link a wallet to your ChainOracle account", category: "platform", icon: "wallet", reward: 200, link: null },
