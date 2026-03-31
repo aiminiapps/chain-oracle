@@ -219,7 +219,7 @@ export default function Sidebar() {
               {/* Action Buttons */}
               <div className="flex items-center gap-2">
                 <a
-                  href="https://x.com/ascp_ai"
+                  href="https://x.com/aichainoracle"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-[11px] font-semibold text-white transition-all duration-200"
