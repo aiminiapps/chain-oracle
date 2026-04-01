@@ -171,28 +171,24 @@ export default function Features() {
 
   const bentoGrid = [
     {
-       badge: "PREDICTIVE ENGINE",
        color: "#F97316",
        title: "Forecast market movements with high precision",
        desc: "Our neural engine intelligently breaks down historical data and real-time liquidity to create accurate trend analysis.",
        visual: <PredictiveVisual />
     },
     {
-       badge: "CURATED ALPHA",
        color: "#22C55E",
        title: "Automated ranking of top performance signals",
        desc: "AI dynamically filters the market to identify the 'Best of the Week' and 'Best of the Month' based on momentum.",
        visual: <FeedsVisual />
     },
     {
-       badge: "SIGNAL ALERTS",
        color: "#3B82F6",
        title: "Easily track and analyze smart money",
        desc: "Visualize complex on-chain behavior with ease. AI works on every token and returns results in a structured feed.",
        visual: <AlertsVisual />
     },
     {
-       badge: "LOCAL INTELLIGENCE",
        color: "#7C3AED",
        title: "Run detailed analysis entirely within your browser",
        desc: "Run deep document and contract analysis efficiently. Perfect for users focused on speed, privacy, and precision.",
@@ -213,7 +209,7 @@ export default function Features() {
           className="text-center mb-16 md:mb-24"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-            Oracle <span className="text-transparent bg-clip-text bg-gradient-to-r from-white/70 to-[#7C3AED]">Main Features</span>
+            Oracle <span className="text-[#7C3AED]">Main Features</span>
           </h2>
         </motion.div>
 
@@ -232,17 +228,7 @@ export default function Features() {
                <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full blur-[80px] opacity-20 pointer-events-none transition-opacity group-hover:opacity-40" style={{ backgroundColor: feature.color }} />
 
                {/* Top Content (Text) */}
-               <div className="relative z-10 mb-8">
-                  {/* Badge */}
-                  <div className="flex items-center gap-2 mb-6">
-                     <div className="w-5 h-5 rounded flex items-center justify-center shrink-0" style={{ backgroundColor: `${feature.color}15`, border: `1px solid ${feature.color}30` }}>
-                        <div className="w-2 h-2 rounded-sm" style={{ backgroundColor: feature.color }} />
-                     </div>
-                     <span className="text-[10px] font-bold uppercase tracking-widest inline-block" style={{ color: feature.color }}>
-                        {feature.badge}
-                     </span>
-                  </div>
-                  
+               <div className="relative z-10 mb-8">                  
                   {/* Title & Desc */}
                   <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 pr-4 leading-[1.3] text-balance">
                      {feature.title}
