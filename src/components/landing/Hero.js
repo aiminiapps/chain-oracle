@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { RiRocketLine, RiLineChartLine, RiBrainLine } from "react-icons/ri";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const RIGHT_OUTPUTS = [
   { token: "$NEIRO", score: "9.8", type: "Whale Accumulation", color: "#22C55E" },
@@ -95,12 +96,9 @@ export default function Hero() {
           {/* Center: The Oracle Processing Beam */}
           <div className="absolute top-0 bottom-0 left-[48%] w-[2px] bg-gradient-to-b from-transparent via-[#F97316] to-transparent shadow-[0_0_20px_#F97316] z-30 flex items-center justify-center">
              {/* The Processing Badge attached to the beam */}
-             <div className="absolute top-1/2 -left-8 -translate-y-1/2 w-16 h-16 rounded-[20px] bg-[#0A0A0F] border-2 border-[#F97316] shadow-[0_0_30px_rgba(249,115,22,0.4)] flex items-center justify-center z-40 transform rotate-45">
-                 <RiBrainLine className="text-[#F97316] text-3xl -rotate-45" />
+             <div className="absolute top-1/2 -left-8 -translate-y-1/2 w-16 h-16 rounded-full bg-[#0A0A0F] border-2 border-[#F97316] shadow-[0_0_30px_rgba(249,115,22,0.4)] flex items-center justify-center z-40 transform rotate-45">
+             <Image src="/agent.png" alt="Logo" width={80} height={80}/>
              </div>
-             
-             {/* Small animated scanning pulses traveling up and down the beam */}
-             <motion.div animate={{ top: ["10%", "90%", "10%"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} className="absolute w-1 h-12 bg-white rounded-full blur-[2px]" />
           </div>
 
           {/* Right Side: Clean Structured Output Feed (Single File List) */}
