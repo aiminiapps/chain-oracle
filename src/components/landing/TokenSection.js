@@ -2,187 +2,197 @@
 
 import { motion } from "motion/react";
 import {
-  RiCoinLine,
-  RiArrowDownLine,
-  RiArrowUpLine,
   RiShieldCheckLine,
-  RiAddLine,
-  RiSubtractLine,
-  RiExchangeFundsLine,
   RiCopperCoinLine,
-  RiLockUnlockLine
+  RiTeamLine,
+  RiLock2Line,
+  RiArrowRightDoubleLine
 } from "react-icons/ri";
 
-const earnMethods = [
-  { label: "Follow on X", reward: "+50 CORA" },
-  { label: "Like & Repost", reward: "+30 CORA" },
-  { label: "Join Telegram", reward: "+75 CORA" },
-  { label: "Run Forecast", reward: "+100 CORA" },
-  { label: "Daily Login", reward: "+20 CORA" },
+const EARN_NODES = [
+  { label: "Community Quests", reward: "+ 50", delay: 0.1 },
+  { label: "Predictive Bounties", reward: "+ 150", delay: 0.2 },
+  { label: "Network Staking", reward: "+ 12%", delay: 0.3 }
 ];
 
-const spendMethods = [
-  { label: "Predictive Report", cost: "-200 CORA" },
-  { label: "Oracle Scanner Pro", cost: "-150 CORA" },
-  { label: "Forecast Alerts", cost: "-100 CORA" },
-  { label: "Watchlist Pro", cost: "-75 CORA" },
+const SPEND_NODES = [
+  { label: "Deep AI Analysis", cost: "- 200", delay: 0.4 },
+  { label: "Real-Time Target Alerts", cost: "- 100", delay: 0.5 },
+  { label: "Wallet Tracking Maps", cost: "- 300", delay: 0.6 }
 ];
 
 export default function TokenSection() {
   return (
-    <section id="token" className="py-20 relative overflow-hidden bg-[#0A0A0F] border-t border-[#141420]">
+    <section id="token" className="py-24 relative overflow-hidden bg-[#0A0A0F]">
       {/* Background blobs */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#7C3AED]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[800px] h-[600px] bg-[#9F67FF]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[500px] bg-[#22C55E]/5 rounded-full blur-[150px] pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-16 md:mb-24"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mt-3">
-            The <span className="text-[#7C3AED]">$CORA</span> Economy
+          <span className="text-[#7C3AED] text-xs font-bold tracking-widest uppercase mb-4 block">The Tokenized Core</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+            The Intelligence <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#7C3AED]">Economy</span>
           </h2>
-          <p className="text-[#A1A1AA] mt-4 max-w-2xl mx-auto">
-            A closed-loop system rewarding true research and active community participation. Earn by engaging, spend to unlock predictive intelligence.
+          <p className="text-[#8E8E9A] mt-4 max-w-2xl mx-auto text-[15px] leading-relaxed">
+            $CORA is the proprietary fuel powering the neural engine. Earn tokens through community participation and burn them to extract high-conviction market signals.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
-          
-          {/* EARN CARD */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-[#0A0A0F] border border-[#2A2A3A] rounded-[2rem] p-8 relative overflow-hidden group hover:border-[#22C55E]/40 transition-colors card-3d"
-          >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#22C55E]/10 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2 group-hover:bg-[#22C55E]/20 transition-all duration-500" />
-            
-            <div className="flex flex-col h-full relative z-10">
-              <div className="w-12 h-12 rounded-2xl bg-[#1C1C2E] border border-[#2A2A3A] flex items-center justify-center mb-6 shadow-sm">
-                <RiArrowDownLine className="text-[#22C55E] text-xl" />
+        {/* ═══════ THE ENGINE PIPELINE ═══════ */}
+        <div className="w-full bg-[#0D0D14] border border-[#1E1E2E] rounded-[2rem] p-8 md:p-12 relative overflow-hidden shadow-2xl mb-6">
+           
+           {/* Pipeline Background Lines connecting the three columns */}
+           <div className="hidden md:block absolute top-[55%] left-[20%] right-[20%] h-px bg-gradient-to-r from-transparent via-[#7C3AED]/40 to-transparent shadow-[0_0_10px_#7C3AED]" />
+           <motion.div 
+             className="hidden md:block absolute top-[55%] left-1/4 h-0.5 w-10 bg-white rounded-full blur-[1px]" 
+             animate={{ left: ["20%", "75%"], opacity: [0, 1, 0] }}
+             transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+           />
+
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 relative z-10 items-center">
+              
+              {/* LEFT: EARN STREAM */}
+              <div className="flex flex-col gap-4">
+                 <div className="text-center md:text-left mb-2">
+                    <span className="text-[#22C55E] text-[11px] font-black uppercase tracking-widest">Input Raw Value</span>
+                 </div>
+                 {EARN_NODES.map((node, i) => (
+                    <motion.div 
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: node.delay, duration: 0.4 }}
+                      className="bg-[#0A0A0F] border border-[#2A2A3A] p-3.5 rounded-xl shadow-[0_5px_20px_rgba(0,0,0,0.3)] flex items-center justify-between group hover:border-[#22C55E]/40 transition-colors"
+                    >
+                       <span className="text-white text-sm font-medium">{node.label}</span>
+                       <span className="px-2 py-0.5 bg-[#22C55E]/10 border border-[#22C55E]/20 text-[#22C55E] text-[10px] font-bold font-mono rounded">+ {node.reward}</span>
+                    </motion.div>
+                 ))}
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">Earn $CORA</h3>
-              <p className="text-[#A1A1AA] text-sm mb-8 leading-relaxed">
-                Perform community tasks and contribute research to accumulate CORA with zero capital required.
-              </p>
 
-              <div className="space-y-3 mt-auto">
-                {earnMethods.map((item, i) => (
-                  <div key={i} className="flex flex-col group/item cursor-default">
-                    <div className="flex items-center justify-between p-3.5 rounded-xl bg-[#141420] border border-[#2A2A3A] group-hover/item:border-[#22C55E]/30 transition-colors">
-                      <span className="text-[#CCC] text-sm font-medium">{item.label}</span>
-                      <div className="flex items-center gap-1.5 bg-[#22C55E]/10 border border-[#22C55E]/20 px-2.5 py-1 rounded-md">
-                        <RiAddLine className="text-[#22C55E] text-xs" />
-                        <span className="text-[#22C55E] font-bold text-xs">{item.reward.replace('+', '')}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+              {/* CENTER: THE ORACLE CORE */}
+              <div className="flex flex-col items-center justify-center py-8 md:py-0">
+                 <div className="relative w-48 h-48 flex items-center justify-center">
+                    {/* Atmospheric Glow */}
+                    <div className="absolute inset-0 bg-[#7C3AED]/20 rounded-full blur-[40px] animate-pulse" />
+                    
+                    {/* Precision Orbital Rings */}
+                    <div className="absolute w-full h-full rounded-full border-[1px] border-dashed border-[#7C3AED]/30 animate-[spin_20s_linear_infinite]" />
+                    <div className="absolute w-[80%] h-[80%] rounded-full border-[1px] border-[#9F67FF]/20 animate-[spin_15s_linear_infinite_reverse]" />
+                    
+                    {/* The Core Container */}
+                    <motion.div 
+                      animate={{ scale: [0.95, 1.05, 0.95] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      className="w-[100px] h-[100px] rounded-full bg-gradient-to-tr from-[#5B21B6] to-[#A78BFA] shadow-[0_0_50px_rgba(124,58,237,0.5)] p-[2px]"
+                    >
+                       <div className="w-full h-full bg-[#0A0A0F] rounded-full flex flex-col items-center justify-center relative overflow-hidden backdrop-blur-xl">
+                          <RiCopperCoinLine className="text-[#9F67FF] text-3xl mb-0.5" />
+                          <span className="text-white font-black text-[11px] tracking-widest">$CORA</span>
+                          
+                          {/* Inner scanner sweep */}
+                          <motion.div 
+                            animate={{ top: ["-50%", "150%"] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                            className="absolute inset-x-0 h-px bg-white/40 blur-[1px] w-full"
+                          />
+                       </div>
+                    </motion.div>
+                 </div>
+                 
+                 <div className="mt-6 text-center">
+                    <div className="text-white font-bold text-lg">Central Reservoir</div>
+                    <div className="text-[#8E8E9A] text-[10px] font-mono tracking-widest uppercase">Zero-Inflation Logic</div>
+                 </div>
               </div>
-            </div>
-          </motion.div>
 
-          {/* CENTER COIN VISUAL */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-gradient-to-br from-[#141420] to-[#0A0A0F] border border-[#2A2A3A] rounded-[2rem] p-8 relative overflow-hidden flex flex-col items-center justify-center min-h-[400px] shadow-2xl"
-          >
-            {/* Orbital Rings */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full border border-[#2A2A3A]/40 border-dashed animate-[spin_20s_linear_infinite]" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 rounded-full border border-[#7C3AED]/10 animate-[spin_15s_linear_infinite_reverse]" />
-
-            {/* Glowing Coin */}
-            <div className="relative z-10 w-36 h-36 rounded-full bg-gradient-to-tr from-[#7C3AED] via-[#9F67FF] to-[#A78BFA] flex items-center justify-center shadow-[0_0_50px_rgba(124,58,237,0.25)] mb-10 hover:shadow-[0_0_70px_rgba(124,58,237,0.4)] transition-all duration-700 hover:scale-105">
-              <div className="w-[8.25rem] h-[8.25rem] rounded-full bg-[#0A0A0F] flex items-center justify-center flex-col shadow-[inset_0_4px_20px_rgba(0,0,0,0.5)] border border-[#7C3AED]/30">
-                <RiCopperCoinLine className="text-[#7C3AED] text-5xl mb-1 opacity-90" />
-                <span className="text-white font-black text-sm tracking-widest bg-gradient-to-r from-white to-[#9F67FF] bg-clip-text text-transparent">CORA</span>
+              {/* RIGHT: SPEND STREAM */}
+              <div className="flex flex-col gap-4">
+                 <div className="text-center md:text-right mb-2">
+                    <span className="text-[#F97316] text-[11px] font-black uppercase tracking-widest">Extract Compute</span>
+                 </div>
+                 {SPEND_NODES.map((node, i) => (
+                    <motion.div 
+                      key={i}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: node.delay, duration: 0.4 }}
+                      className="bg-[#0A0A0F] border border-[#2A2A3A] p-3.5 rounded-xl shadow-[0_5px_20px_rgba(0,0,0,0.3)] flex items-center justify-between flex-row-reverse md:flex-row group hover:border-[#F97316]/40 transition-colors"
+                    >
+                       <span className="text-white text-sm font-medium">{node.label}</span>
+                       <span className="px-2 py-0.5 bg-[#F97316]/10 border border-[#F97316]/20 text-[#F97316] text-[10px] font-bold font-mono rounded">- {node.cost}</span>
+                    </motion.div>
+                 ))}
               </div>
-            </div>
 
-            <div className="text-center relative z-10">
-              <h3 className="text-xl font-bold text-white mb-2">The Oracle Engine</h3>
-              <p className="text-[#A1A1AA] text-sm max-w-[250px] mx-auto leading-relaxed">
-                Connecting community engagement to high-probability market predictions.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* SPEND CARD */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-[#0A0A0F] border border-[#2A2A3A] rounded-[2rem] p-8 relative overflow-hidden group hover:border-[#7C3AED]/40 transition-colors card-3d"
-          >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#7C3AED]/10 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2 group-hover:bg-[#7C3AED]/20 transition-all duration-500" />
-            
-            <div className="flex flex-col h-full relative z-10">
-              <div className="w-12 h-12 rounded-2xl bg-[#1C1C2E] border border-[#2A2A3A] flex items-center justify-center mb-6 shadow-sm">
-                <RiExchangeFundsLine className="text-[#7C3AED] text-xl" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">Unlock Predictions</h3>
-              <p className="text-[#A1A1AA] text-sm mb-8 leading-relaxed">
-                Spend CORA to access exclusive AI forecasts, deep reports, and premium signal intelligence.
-              </p>
-
-              <div className="space-y-3 mt-auto">
-                {spendMethods.map((item, i) => (
-                  <div key={i} className="flex flex-col group/item cursor-default">
-                    <div className="flex items-center justify-between p-3.5 rounded-xl bg-[#141420] border border-[#2A2A3A] group-hover/item:border-[#7C3AED]/30 transition-colors">
-                      <div className="flex items-center gap-2.5">
-                        <RiLockUnlockLine className="text-[#6B6B76] group-hover/item:text-[#7C3AED]/80 transition-colors text-sm" />
-                        <span className="text-[#CCC] text-sm font-medium">{item.label}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5 bg-[#7C3AED]/10 border border-[#7C3AED]/20 px-2.5 py-1 rounded-md">
-                        <RiSubtractLine className="text-[#7C3AED] text-xs" />
-                        <span className="text-[#7C3AED] font-bold text-xs">{item.cost.replace('-', '')}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
+           </div>
         </div>
 
-        {/* Security Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-6 bg-gradient-to-r from-[#0A0A0F] to-[#141420] border border-[#2A2A3A] rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden relative"
-        >
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-48 h-full bg-[#7C3AED]/5 blur-[40px] pointer-events-none" />
+        {/* ═══════ ARCHITECTURE PILLARS ═══════ */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+           <motion.div 
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+             transition={{ duration: 0.5, delay: 0.2 }}
+             className="bg-[#0D0D14] border border-[#1E1E2E] p-6 rounded-2xl flex flex-col gap-3 group hover:border-[#2A2A3A]"
+           >
+              <div className="w-10 h-10 rounded-lg bg-[#141420] border border-[#2A2A3A] flex items-center justify-center text-[#7C3AED] group-hover:bg-[#7C3AED]/10 transition-colors">
+                 <RiShieldCheckLine className="text-xl" />
+              </div>
+              <div>
+                 <h4 className="text-white font-bold text-[15px] mb-1">Anti-Sybil Guardrails</h4>
+                 <p className="text-[#8E8E9A] text-xs leading-relaxed">Sophisticated on-chain safeguards prevent bot farming, ensuring fair dynamic limits for organic users.</p>
+              </div>
+           </motion.div>
 
-          <div className="flex items-center gap-5 relative z-10 w-full md:w-auto">
-            <div className="w-14 h-14 rounded-2xl bg-[#1C1C2E] sm:flex hidden items-center justify-center border border-[#2A2A3A] shrink-0 shadow-lg">
-              <RiShieldCheckLine className="text-[#7C3AED] text-2xl" />
-            </div>
-            <div className="text-left">
-              <h4 className="text-white font-bold text-lg tracking-tight">Secure & Fair Ecosystem</h4>
-              <p className="text-[#A1A1AA] text-sm mt-1 max-w-lg leading-relaxed">
-                Tokens are governed by robust smart contracts. Our economy is protected by wallet-based authentication, strict daily limits, and anti-sybil safeguards.
-              </p>
-            </div>
-          </div>
-          
-          <div className="relative z-10 w-full md:w-auto mt-2 md:mt-0 flex shrink-0">
-            <button className="btn-3d-ghost w-full md:w-auto">
-              Read Tokenomics
-            </button>
-          </div>
-        </motion.div>
+           <motion.div 
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+             transition={{ duration: 0.5, delay: 0.3 }}
+             className="bg-[#0D0D14] border border-[#1E1E2E] p-6 rounded-2xl flex flex-col gap-3 group hover:border-[#2A2A3A]"
+           >
+               <div className="w-10 h-10 rounded-lg bg-[#141420] border border-[#2A2A3A] flex items-center justify-center text-[#22C55E] group-hover:bg-[#22C55E]/10 transition-colors">
+                 <RiTeamLine className="text-xl" />
+              </div>
+              <div>
+                 <h4 className="text-white font-bold text-[15px] mb-1">Decentralized Effort</h4>
+                 <p className="text-[#8E8E9A] text-xs leading-relaxed">By crowdsourcing noise-filtering tasks to the community, the computational AI cost remains radically accessible.</p>
+              </div>
+           </motion.div>
+
+           <motion.div 
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+             transition={{ duration: 0.5, delay: 0.4 }}
+             className="bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] bg-[#141420] border border-[#3F3F46] p-6 rounded-2xl flex flex-col gap-3 relative overflow-hidden group hover:border-[#7C3AED]"
+           >
+              <div className="absolute inset-0 bg-gradient-to-br from-[#7C3AED]/20 to-transparent" />
+              <div className="w-10 h-10 rounded-lg bg-[#0A0A0F] border border-[#3F3F46] flex items-center justify-center text-[#9F67FF] relative z-10">
+                 <RiLock2Line className="text-xl" />
+              </div>
+              <div className="relative z-10">
+                 <h4 className="text-white font-bold text-[15px] mb-1">Read The Master Blueprint</h4>
+                 <p className="text-[#CCC] text-xs leading-relaxed mb-4">Dive deep into the mathematical models driving the $CORA circular intelligence economy.</p>
+                 <button className="flex items-center gap-1.5 text-[11px] font-bold text-[#9F67FF] uppercase tracking-widest hover:text-white transition-colors">
+                    Access Docs <RiArrowRightDoubleLine />
+                 </button>
+              </div>
+           </motion.div>
+        </div>
 
       </div>
     </section>
