@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Features", href: "#features" },
@@ -40,12 +41,7 @@ export default function Navbar() {
         >
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 relative z-10 group pl-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#7C3AED] to-[#5B21B6] flex items-center justify-center shadow-lg shadow-[#7C3AED]/20 group-hover:shadow-[#7C3AED]/40 transition-shadow">
-              <span className="text-white font-extrabold text-xs">CO</span>
-            </div>
-            <span className="text-white font-bold text-lg tracking-tight">
-              Chain<span className="text-[#7C3AED]">Oracle</span>
-            </span>
+            <Image src="/logo.png" alt="Logo" width={160} height={32} />
           </Link>
 
           {/* Desktop Links - Centered */}
