@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { RiTwitterXLine, RiArrowRightUpLine, RiBnbFill } from "react-icons/ri";
 
@@ -11,8 +12,8 @@ const footerLinks = {
     { name: "Signal Alerts", href: "/app/alerts" },
   ],
   Community: [
-    { name: "Twitter / X", href: "https://x.com/ascp_ai" },
-    { name: "Whitepaper", href: "https://alpha-scope.gitbook.io/alpha-scope-docs" }
+    { name: "Twitter / X", href: "https://x.com/aichainoracle" },
+    { name: "Whitepaper", href: "https://chain-oracle.gitbook.io/chain-oracle-docs" }
   ],
 };
 
@@ -29,12 +30,8 @@ export default function Footer() {
           {/* Brand & Socials */}
           <div className="max-w-sm">
             <Link href="/" className="flex items-center gap-2.5 mb-6 group inline-flex">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#7C3AED] to-[#5B21B6] flex items-center justify-center shadow-lg shadow-[#7C3AED]/20">
-                <span className="text-white font-extrabold text-xs">CO</span>
-              </div>
-              <span className="text-white font-bold text-lg tracking-tight">
-                Chain<span className="text-[#7C3AED]">Oracle</span>
-              </span>
+            <Image src="/logo.png" alt="Logo" width={160} height={32} />
+            
             </Link>
             <p className="text-[#A1A1AA] text-sm leading-relaxed mb-8">
               The premier AI-powered predictive analytics platform. Forecast token trends, discover alpha opportunities, and receive real-time signal intelligence before the crowd.
@@ -43,7 +40,7 @@ export default function Footer() {
             {/* Minimal Socials */}
             <div className="flex flex-wrap items-center gap-4">
               <a
-                href="https://x.com/ascp_ai"
+                href="https://x.com/aichainoracle"
                 className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#0A0A0F] border border-[#2A2A3A] text-[#A1A1AA] hover:text-[#9F67FF] hover:border-[#7C3AED]/40 hover:bg-[#7C3AED]/5 transition-all duration-300"
               >
                 <RiTwitterXLine className="text-lg" />
