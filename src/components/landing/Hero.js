@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { RiRocketLine, RiLineChartLine, RiBrainLine } from "react-icons/ri";
+import { RiArrowRightUpLine } from "react-icons/ri";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
@@ -44,10 +44,7 @@ export default function Hero() {
         {/* CTAs */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-24">
           <Link href="/app" className="btn-3d group flex items-center justify-center gap-2 px-8 py-4 text-sm font-bold w-full sm:w-auto uppercase tracking-wide">
-             Initialize Subsystem
-          </Link>
-          <Link href="/app/analyzer" className="px-8 py-4 rounded-xl border border-dashed border-[#2A2A3A] bg-[#0A0A0F] text-[#8E8E9A] hover:text-white hover:border-[#7C3AED]/50 transition-all text-sm font-bold flex items-center justify-center gap-2 w-full sm:w-auto uppercase tracking-wide group flex items-center gap-2">
-            <RiBrainLine className="text-lg group-hover:text-[#9F67FF] transition-colors" /> Run Live Analysis
+             Launch App <RiArrowRightUpLine className="text-lg group-hover:text-gray-300 transition-colors" />
           </Link>
         </motion.div>
 
@@ -87,9 +84,9 @@ export default function Hero() {
           </div>
 
           {/* Center: The Oracle Processing Beam */}
-          <div className="absolute top-0 bottom-0 left-[48%] w-[2px] bg-gradient-to-b from-transparent via-[#F97316] to-transparent shadow-[0_0_20px_#F97316] z-30 flex items-center justify-center">
+          <div className="absolute top-0 bottom-0 left-[48%] w-[2px] bg-gradient-to-b from-transparent via-[#7C3AED] to-transparent shadow-[0_0_20px_#7C3AED] z-30 flex items-center justify-center">
              {/* The Processing Badge attached to the beam */}
-             <div className="absolute top-1/2 -left-8 -translate-y-1/2 w-16 h-16 rounded-full bg-[#0A0A0F] border-2 border-[#F97316] shadow-[0_0_30px_rgba(249,115,22,0.4)] flex items-center justify-center z-40 transform rotate-45">
+             <div className="absolute top-1/2 -left-8 -translate-y-1/2 w-16 h-16 rounded-full bg-[#0A0A0F] border-2 border-[#7C3AED] shadow-[0_0_30px_rgba(124,58,237,0.4)] flex items-center justify-center z-40 transform rotate-45">
              <Image src="/agent.png" alt="Logo" width={80} height={80}/>
              </div>
           </div>

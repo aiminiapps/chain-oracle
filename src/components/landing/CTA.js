@@ -30,7 +30,7 @@ export default function CTA() {
                  href="/app"
                  className="btn-3d flex items-center justify-center gap-2 px-10 py-5 text-sm font-bold uppercase tracking-widest w-full sm:w-auto overflow-hidden relative"
                >
-                 <span className="relative z-10 flex items-center gap-2">Deploy Oracle Engine <RiArrowRightSLine className="text-xl" /></span>
+                 <span className="relative z-10 flex items-center gap-2">Launch App  <RiArrowRightSLine className="text-xl" /></span>
                </Link>
             </div>
 
