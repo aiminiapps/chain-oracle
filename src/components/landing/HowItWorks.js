@@ -3,168 +3,179 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  RiErrorWarningLine,
-  RiFileList3Line,
-  RiSettings4Line,
   RiWalletLine,
-  RiTrophyLine,
   RiSearchLine,
-  RiRocketLine,
+  RiServerLine,
+  RiCheckDoubleLine,
+  RiLoader4Line,
+  RiShieldCheckLine, RiTrophyLine, RiPulseLine
 } from "react-icons/ri";
-import Link from "next/link";
 
 const steps = [
   {
     id: "01",
-    title: "Connect Wallet",
-    description: "Link your wallet to create your secure identity on the ChainOracle platform.",
+    title: "Initialize Oracle Link",
+    description: "Connect your Web3 identity to sync with ChainOracle's intelligence network.",
     icon: RiWalletLine,
     details: {
-      tag: "STEP 1 OF 4",
-      heading: "Create your identity",
-      text: "Set up your secure connection to interact with the ChainOracle ecosystem. Your wallet serves as your universal login, providing access to all prediction tools.",
-      form: (
-        <div className="space-y-6">
-          <div>
-            <label className="block text-white font-medium mb-2">Your wallet address</label>
-            <input 
-              type="text" 
-              placeholder="e.g 0x123...abc" 
-              disabled
-              className="w-full bg-[#0A0A0F] border border-[#2A2A3A] rounded-lg px-4 py-3 text-[#E0E0E0] placeholder:text-[#6B6B76] focus:outline-none focus:border-[#7C3AED] transition-colors"
-            />
-          </div>
-          <div>
-            <label className="block text-white font-medium mb-2">Preferred Network</label>
-            <input 
-              type="text" 
-              placeholder="e.g Ethereum Mainnet" 
-              disabled
-              className="w-full bg-[#0A0A0F] border border-[#2A2A3A] rounded-lg px-4 py-3 text-[#E0E0E0] placeholder:text-[#6B6B76] focus:outline-none focus:border-[#7C3AED] transition-colors"
-            />
-          </div>
-          <p className="text-sm text-[#A1A1AA]">
-            By connecting your wallet you agree to the Terms of Service.
-          </p>
-          <div className="space-y-3 pt-4 border-t border-[#2A2A3A]">
-            <h4 className="text-white font-medium text-sm">Documentation</h4>
-            <div className="flex gap-3">
-              <button disabled className="flex items-center gap-2 px-4 py-2 bg-[#1C1C2E] border border-[#2A2A3A] rounded-lg text-sm text-[#CCC] hover:text-white transition-colors cursor-not-allowed">
-                <RiFileList3Line /> Protocol Setup
-              </button>
-              <button disabled className="flex items-center gap-2 px-4 py-2 bg-[#1C1C2E] border border-[#2A2A3A] rounded-lg text-sm text-[#CCC] hover:text-white transition-colors cursor-not-allowed">
-                <RiSettings4Line /> Wallet Issues
-              </button>
-            </div>
-          </div>
+      tag: "PHASE I",
+      heading: "Establish Secure Uplink",
+      text: "Instantly link your wallet with our encrypted subsystem. No personal data required—your on-chain identity serves as your universal secure key to the platform.",
+      visual: (
+        <div className="w-full h-[220px] bg-[#0A0A0F]/80 border border-[#2A2A3A]/50 rounded-2xl p-6 flex flex-col items-center justify-center relative shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#7C3AED]/10 to-transparent pointer-events-none rounded-b-2xl" />
+           <motion.div 
+             animate={{ y: [0, -5, 0] }} 
+             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+             className="w-20 h-20 rounded-full bg-[#141420] border border-[#2A2A3A] flex items-center justify-center relative z-10 shadow-[0_0_30px_#7C3AED40]"
+           >
+              <RiWalletLine className="text-[#9F67FF] text-3xl" />
+              <motion.div 
+                 initial={{ scale: 0 }}
+                 animate={{ scale: 1 }}
+                 transition={{ delay: 0.5, type: "spring" }}
+                 className="absolute -top-1 -right-1 w-5 h-5 bg-[#22C55E] rounded-full border-4 border-[#0A0A0F]" 
+              />
+           </motion.div>
+           <motion.div 
+             initial={{ opacity: 0, y: 10 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ delay: 0.8 }}
+             className="mt-6 text-center z-10"
+           >
+             <div className="text-white font-mono text-sm tracking-widest font-bold mb-1">AUTHENTICATED</div>
+             <div className="text-[#8E8E9A] text-xs font-mono">ID: 0x7F2...K9A4B</div>
+           </motion.div>
         </div>
       )
     }
   },
   {
     id: "02",
-    title: "Earn $CORA",
-    description: "Complete quests and community tasks to earn CORA tokens — no purchase required.",
-    icon: RiTrophyLine,
+    title: "Input Target Vector",
+    description: "Provide the smart contract or wallet address you want the AI to analyze.",
+    icon: RiSearchLine,
     details: {
-      tag: "STEP 2 OF 4",
-      heading: "Start earning rewards",
-      text: "Engage with the community, participate in daily quests, and contribute to prediction discussions to earn CORA tokens for unlocking premium forecasts.",
-      form: (
-        <div className="space-y-6">
-          <div>
-            <label className="block text-white font-medium mb-2">Community Handle (Optional)</label>
-            <input 
-              type="text" 
-              placeholder="e.g @crypto_guru" 
-              disabled
-              className="w-full bg-[#0A0A0F] border border-[#2A2A3A] rounded-lg px-4 py-3 text-[#E0E0E0] placeholder:text-[#6B6B76] focus:outline-none focus:border-[#7C3AED] transition-colors"
-            />
-          </div>
-          <div>
-            <label className="block text-white font-medium mb-2">Referral Code</label>
-            <input 
-              type="text" 
-              placeholder="e.g ORACLE2026" 
-              disabled
-              className="w-full bg-[#0A0A0F] border border-[#2A2A3A] rounded-lg px-4 py-3 text-[#E0E0E0] placeholder:text-[#6B6B76] focus:outline-none focus:border-[#7C3AED] transition-colors"
-            />
-          </div>
-          <p className="text-sm text-[#A1A1AA]">
-            Earn your first 100 $CORA immediately upon verification of your Discord or X profile.
-          </p>
+      tag: "PHASE II",
+      heading: "Designate Your Target",
+      text: "Paste any token contract, liquidity pair, or wallet address. The Oracle Engine instantly locks onto the target across all supported networks.",
+      visual: (
+        <div className="w-full h-[220px] bg-[#0A0A0F]/80 border border-[#2A2A3A]/50 rounded-2xl p-8 flex flex-col justify-center relative shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#F97316]/10 to-transparent pointer-events-none rounded-b-2xl" />
+           <div className="relative z-10">
+              <div className="relative mb-6">
+                 <RiSearchLine className="absolute left-4 top-1/2 -translate-y-1/2 text-[#F97316] text-xl" />
+                 <div className="w-full bg-[#141420] border border-[#F97316]/40 rounded-xl py-4 flex items-center pl-12 pr-4 shadow-[0_0_15px_rgba(249,115,22,0.15)]">
+                    <span className="text-[#E0E0E0] font-mono text-xs overflow-hidden whitespace-nowrap">0x6982508145454Ce325dDbE47a25d4ec3d2311933</span>
+                    <motion.div animate={{ opacity: [1, 0, 1] }} transition={{ duration: 1, repeat: Infinity }} className="w-px h-5 bg-[#F97316] ml-1" />
+                 </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                 <div className="px-3 py-1.5 rounded-md bg-[#1C1C2E] border border-[#2A2A3A] text-[10px] text-white flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" /> Ethereum Network
+                 </div>
+                 <div className="px-3 py-1.5 rounded-md bg-[#1C1C2E] border border-[#2A2A3A] text-[10px] text-white flex items-center gap-1.5">
+                    <RiShieldCheckLine className="text-[#22C55E]" /> Target Verified
+                 </div>
+              </div>
+           </div>
         </div>
       )
     }
   },
   {
     id: "03",
-    title: "Configure AI Oracle",
-    description: "Set up your personalized AI prediction engine with chains and risk preferences.",
-    icon: RiSearchLine,
+    title: "Neural Processing",
+    description: "The AI deeply scans liquidity, narrative sentiment, and holder distribution.",
+    icon: RiServerLine,
     details: {
-      tag: "STEP 3 OF 4",
-      heading: "Configure your Oracle",
-      text: "Set up your personalized AI Oracle by selecting the types of tokens and metrics you want to track. The engine will learn and improve from your interactions.",
-      form: (
-        <div className="space-y-6">
-          <div>
-            <label className="block text-white font-medium mb-2">Primary Chains</label>
-            <input 
-              type="text" 
-              placeholder="e.g Ethereum, Solana, Arbitrum" 
-              disabled
-              className="w-full bg-[#0A0A0F] border border-[#2A2A3A] rounded-lg px-4 py-3 text-[#E0E0E0] placeholder:text-[#6B6B76] focus:outline-none focus:border-[#7C3AED] transition-colors"
-            />
-          </div>
-          <div>
-            <label className="block text-white font-medium mb-2">Risk Tolerance & Strategy</label>
-            <input 
-              type="text" 
-              placeholder="e.g Medium risk, focus on DeFi protocols" 
-              disabled
-              className="w-full bg-[#0A0A0F] border border-[#2A2A3A] rounded-lg px-4 py-3 text-[#E0E0E0] placeholder:text-[#6B6B76] focus:outline-none focus:border-[#7C3AED] transition-colors"
-            />
-          </div>
-          <p className="text-sm text-[#A1A1AA]">
-            The AI Oracle will use these parameters to filter noise and deliver highly relevant predictions.
-          </p>
+      tag: "PHASE III",
+      heading: "Oracle Deep Scan Engaged",
+      text: "Our proprietary neural-net filters millions of on-chain data points in seconds. We analyze smart money wallets, check contract safety, and measure momentum volume organically.",
+      visual: (
+        <div className="w-full h-[220px] bg-[#0A0A0F]/80 border border-[#2A2A3A]/50 rounded-2xl p-6 flex flex-col justify-center relative shadow-[0_0_50px_rgba(0,0,0,0.5)] space-y-3">
+           {[
+             { label: "Validating Contract Integrity", delay: 0, color: "#22C55E" },
+             { label: "Mapping Smart Money Flows", delay: 0.5, color: "#3B82F6" },
+             { label: "Evaluating Social Narrative", delay: 1, color: "#9F67FF" }
+           ].map((task, i) => (
+             <div key={i} className="bg-[#141420] border border-[#2A2A3A] p-3 rounded-xl flex items-center gap-3 relative overflow-hidden">
+                <motion.div 
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ delay: task.delay + 1, duration: 0.1 }}
+                  className="absolute inset-0 bg-[#1C1C2E] z-10 flex items-center justify-center text-[10px] text-[#A1A1AA] uppercase tracking-widest font-mono"
+                >
+                  <RiLoader4Line className="animate-spin text-lg" />
+                </motion.div>
+                
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: task.color, boxShadow: `0 0 8px ${task.color}` }} />
+                <div className="flex-1">
+                   <div className="flex justify-between items-center mb-1.5">
+                      <span className="text-[#E0E0E0] text-[10px] uppercase font-bold tracking-wider">{task.label}</span>
+                      <span className="text-[#8E8E9A] text-[9px] font-mono">100%</span>
+                   </div>
+                   <div className="w-full h-1 bg-[#0A0A0F] rounded-full overflow-hidden">
+                      <motion.div 
+                        initial={{ width: "0%" }}
+                        animate={{ width: "100%" }}
+                        transition={{ duration: 1, delay: task.delay, ease: "easeOut" }}
+                        className="h-full rounded-full"
+                        style={{ backgroundColor: task.color }}
+                      />
+                   </div>
+                </div>
+             </div>
+           ))}
         </div>
       )
     }
   },
   {
     id: "04",
-    title: "Receive Predictions",
-    description: "Get AI-curated forecasts, deep reports, and real-time signal alerts.",
-    icon: RiRocketLine,
+    title: "Extract Intelligence",
+    description: "Receive the final Alpha score with actionable, predictive insights.",
+    icon: RiCheckDoubleLine,
     details: {
-      tag: "STEP 4 OF 4",
-      heading: "Setup Prediction Alerts",
-      text: "Determine how and when you want to receive predictions and signal alerts to ensure you never miss a critical opportunity.",
-      form: (
-        <div className="space-y-6">
-          <div>
-            <label className="block text-white font-medium mb-2">Notification Channel</label>
-            <input 
-              type="text" 
-              placeholder="e.g Telegram @my_handle" 
-              disabled
-              className="w-full bg-[#0A0A0F] border border-[#2A2A3A] rounded-lg px-4 py-3 text-[#E0E0E0] placeholder:text-[#6B6B76] focus:outline-none focus:border-[#7C3AED] transition-colors"
-            />
-          </div>
-          <div>
-            <label className="block text-white font-medium mb-2">Alert Thresholds</label>
-            <input 
-              type="text" 
-              placeholder="e.g Volume spike > 500% in 1H" 
-              disabled
-              className="w-full bg-[#0A0A0F] border border-[#2A2A3A] rounded-lg px-4 py-3 text-[#E0E0E0] placeholder:text-[#6B6B76] focus:outline-none focus:border-[#7C3AED] transition-colors"
-            />
-          </div>
-          <p className="text-sm text-[#A1A1AA]">
-            Alerts will be sent instantly when signals match your configured thresholds. 
-          </p>
+      tag: "PHASE IV",
+      heading: "Execute with Absolute Confidence",
+      text: "The final intelligence report is compiled perfectly into the dashboard. Review the comprehensive probability matrix and act on the insights before the market moves.",
+      visual: (
+        <div className="w-full h-[220px] bg-[#0A0A0F]/80 border border-[#2A2A3A]/50 rounded-2xl p-6 flex flex-col justify-between relative shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden">
+           <div className="absolute top-0 left-0 w-1.5 h-full bg-[#22C55E]" />
+           <div className="absolute top-0 right-0 w-32 h-32 bg-[#22C55E]/10 rounded-full blur-[40px] translate-x-10 -translate-y-10" />
+           
+           <div className="relative z-10 flex justify-between items-start">
+             <div>
+                <h4 className="text-white font-bold text-lg leading-tight uppercase tracking-wider mb-1">Target Resolved</h4>
+                <p className="text-[#8E8E9A] text-[10px] font-mono">ANALYSIS_COMPLETE : PASS</p>
+             </div>
+             <motion.div 
+               initial={{ scale: 0.8, opacity: 0 }}
+               animate={{ scale: 1, opacity: 1 }}
+               transition={{ type: "spring", delay: 0.3 }}
+               className="px-3 py-1 bg-[#22C55E]/10 border border-[#22C55E]/30 text-[#22C55E] text-[9px] font-black rounded uppercase tracking-widest shadow-[0_0_15px_rgba(34,197,94,0.2)]"
+             >
+               High Conviction
+             </motion.div>
+           </div>
+           
+           <div className="relative z-10 mt-auto flex items-end justify-between border-t border-[#2A2A3A] pt-4">
+              <div>
+                 <div className="text-[10px] text-[#A1A1AA] uppercase tracking-widest mb-1 font-mono">Forecast Score</div>
+                 <div className="flex items-end gap-1.5">
+                    <span className="text-5xl font-black text-white leading-none tracking-tighter shadow-sm text-transparent bg-clip-text bg-gradient-to-b from-white to-[#A1A1AA]">9.6</span>
+                    <span className="text-[#6B6B76] text-sm font-bold pb-1">/ 10</span>
+                 </div>
+              </div>
+              <motion.div 
+                animate={{ y: [0, -4, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-10 h-10 rounded-full bg-[#1C1C2E] border border-[#2A2A3A] flex items-center justify-center text-[#22C55E]"
+              >
+                 <RiPulseLine className="text-xl" />
+              </motion.div>
+           </div>
         </div>
       )
     }
@@ -175,118 +186,126 @@ export default function HowItWorks() {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section id="how-it-works" className="py-16 relative overflow-hidden bg-[#0A0A0F]">
-      <div className="max-w-[85rem] mx-auto px-6">
+    <section id="how-it-works" className="py-24 relative overflow-hidden bg-[#0A0A0F]">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mt-3">
-            How <span className="gradient-text-purple">ChainOracle</span> Works
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+            How The <span className="text-[#7C3AED]">Oracle Works</span>
           </h2>
         </motion.div>
 
-        <div className="bg-[#0A0A0F] border border-[#2A2A3A] rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row min-h-[700px]">
+        {/* Main Interface */}
+        <div className="bg-[#0D0D14] border border-[#1E1E2E] rounded-[2rem] overflow-hidden shadow-2xl flex flex-col justify-between lg:flex-row min-h-[500px]">
           
-          {/* LEFT PANEL */}
-          <div className="lg:w-[45%] p-10 lg:p-14 relative border-b lg:border-b-0 lg:border-r border-[#2A2A3A] overflow-hidden flex flex-col justify-start pb-20">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#12101F] via-[#0A0A0F] to-[#0D0D14]" />
-            <div className="absolute top-0 right-0 w-80 h-80 bg-[#7C3AED]/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#7C3AED]/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
+          {/* LEFT PANEL - Timeline/Stepper */}
+          <div className="lg:w-[45%] p-8 md:p-12 relative border-b lg:border-b-0 lg:border-r border-[#1E1E2E] flex flex-col justify-center">
+            
+            <div className="relative z-10 space-y-8">
+              {/* Stepper Line */}
+              <div className="absolute left-[28px] top-6 bottom-6 w-px bg-gradient-to-b from-transparent via-[#2A2A3A] to-transparent z-0" />
 
-            <div className="relative z-10 flex flex-col pt-4">
-              <div className="flex items-start gap-4 mb-12 bg-[#1C1C2E]/50 p-4 rounded-xl border border-[#2A2A3A]">
-                <RiErrorWarningLine className="text-[#A1A1AA] text-xl mt-0.5 flex-shrink-0" />
-                <p className="text-[#CCC] text-sm leading-relaxed">
-                  Get started by connecting your wallet, earning initial rewards, and configuring your personalized AI prediction engine.
-                </p>
-              </div>
-
-              <div className="relative pl-0 md:pl-2 space-y-12">
-                <div className="absolute left-6 md:left-[2rem] top-8 bottom-10 w-px border-l-2 border-dashed border-[#2A2A3A] -translate-x-1/2" />
-
-                {steps.map((step, index) => {
-                  const isActive = activeStep === index;
-                  const isPast = index < activeStep;
-                  
-                  return (
-                    <div 
-                      key={step.id} 
-                      className="relative z-10 flex gap-6 cursor-pointer group"
-                      onClick={() => setActiveStep(index)}
-                    >
-                      <div className="flex-shrink-0 relative">
-                        <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 relative z-10 box-border ${
-                          isActive 
-                            ? "bg-[#1C1C2E] border-2 border-[#7C3AED] shadow-[0_0_15px_rgba(124,58,237,0.2)]" 
-                            : isPast 
-                              ? "bg-[#1C1C2E] border-[#A1A1AA] border-2" 
-                              : "bg-[#0A0A0F] border-[#2A2A3A] border-2 group-hover:border-[#555]"
-                        }`}>
-                          <step.icon className={`text-xl transition-colors duration-300 ${
-                            isActive ? "text-[#7C3AED]" : isPast ? "text-[#A1A1AA]" : "text-[#6B6B76]"
-                          }`} />
-                        </div>
-                      </div>
-                      <div className="pt-1.5 flex-1 pr-4">
-                        <h4 className={`text-lg font-bold transition-colors duration-300 ${
-                          isActive || isPast ? "text-white" : "text-[#A1A1AA]"
-                        }`}>
-                          {step.title}
-                        </h4>
-                        <p className={`text-sm mt-2 leading-relaxed transition-colors duration-300 ${
-                          isActive || isPast ? "text-[#CCC]" : "text-[#6B6B76]"
-                        }`}>
-                          {step.description}
-                        </p>
+              {steps.map((step, index) => {
+                const isActive = activeStep === index;
+                const isPast = index < activeStep;
+                
+                return (
+                  <div 
+                    key={step.id} 
+                    className="relative z-10 flex gap-6 cursor-pointer group"
+                    onClick={() => setActiveStep(index)}
+                  >
+                    <div className="flex-shrink-0 relative">
+                      {/* Active Glow Ring */}
+                      {isActive && (
+                         <motion.div 
+                           layoutId="activeRing"
+                           className="absolute -inset-2 h-18 rounded-lg border border-[#7C3AED]/30 bg-[#7C3AED]/5"
+                           transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                         />
+                      )}
+                      <div className={`w-14 h-14 rounded-lg flex flex-col items-center justify-center transition-all duration-300 relative z-10 ${
+                        isActive 
+                          ? "bg-[#7C3AED]/10 border border-[#7C3AED]/50 shadow-[0_0_20px_rgba(124,58,237,0.3)]" 
+                          : isPast 
+                            ? "bg-[#141420] border-[#2A2A3A] border" 
+                            : "bg-[#0A0A0F] border-[#1E1E2E] border group-hover:border-[#3F3F46]"
+                      }`}>
+                        <span className={`text-[9px] font-bold tracking-widest leading-none mb-1 transition-colors ${isActive ? "text-[#9F67FF]" : isPast ? "text-[#6B6B76]" : "text-[#3F3F46]"}`}>
+                           {step.id}
+                        </span>
+                        <step.icon className={`text-lg transition-colors duration-300 ${
+                          isActive ? "text-[#E0E0E0]" : isPast ? "text-[#8E8E9A]" : "text-[#3F3F46]"
+                        }`} />
                       </div>
                     </div>
-                  )
-                })}
-              </div>
+                    <div className="pt-2 flex-1 pr-4">
+                      <h4 className={`text-[17px] font-bold transition-all duration-300 ${
+                        isActive ? "text-white translate-x-1" : isPast ? "text-[#A1A1AA]" : "text-[#6B6B76]"
+                      }`}>
+                        {step.title}
+                      </h4>
+                      {isActive && (
+                        <motion.p 
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          className="text-[#8E8E9A] text-[13px] mt-2 leading-relaxed"
+                        >
+                          {step.description}
+                        </motion.p>
+                      )}
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
 
-          {/* RIGHT PANEL */}
-          <div className="lg:w-[55%] p-10 lg:p-14 flex flex-col justify-start pt-16 lg:pt-24 bg-[#0A0A0F] relative overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeStep}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className="w-full max-w-xl mx-auto"
-              >
-                <div className="mb-10">
-                  <span className="text-[#7C3AED] text-xs font-bold tracking-widest uppercase mb-4 block">
-                    {steps[activeStep].details.tag}
-                  </span>
-                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-5">
-                    {steps[activeStep].details.heading}
-                  </h3>
-                  <p className="text-[#A1A1AA] leading-relaxed text-base">
-                    {steps[activeStep].details.text}
-                  </p>
-                </div>
+          {/* RIGHT PANEL - Dynamic Visualizer */}
+          <div className="lg:w-[55%] bg-gradient-to-br from-[#12101F]/30 to-[#0A0A0F] relative overflow-hidden flex flex-col">
+            {/* Background effects */}
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#7C3AED]/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+            
+            <div className="flex-1 p-8 md:p-12 flex items-center justify-center">
+               <AnimatePresence mode="wait">
+                 <motion.div
+                   key={activeStep}
+                   initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                   animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                   exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
+                   transition={{ duration: 0.4, ease: "easeOut" }}
+                   className="w-full max-w-sm"
+                 >
+                    {steps[activeStep].details.visual}
+                 </motion.div>
+               </AnimatePresence>
+            </div>
 
-                {steps[activeStep].details.form}
-                
-                <div className="mt-12">
-                 <Link href="/app">
-                  <button 
-                    onClick={() => setActiveStep(prev => Math.min(steps.length - 1, prev + 1))}
-                    className="btn-3d w-full sm:w-auto"
-                  >
-                    {activeStep === steps.length - 1 ? "Complete Setup" : "Save and continue"}
-                  </button>
-                 </Link>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+            {/* Bottom Text Description */}
+            <div className="p-8 md:p-12 border-t border-[#1E1E2E] bg-[#0A0A0F]/80 backdrop-blur-md">
+               <AnimatePresence mode="wait">
+                 <motion.div
+                   key={activeStep}
+                   initial={{ opacity: 0, y: 10 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   exit={{ opacity: 0, y: -10 }}
+                   transition={{ duration: 0.3 }}
+                 >
+                   <div className="flex items-center gap-3 mb-3">
+                      <span className="px-2 py-0.5 rounded bg-[#1C1C2E] border border-[#2A2A3A] text-[#7C3AED] text-[9px] font-black uppercase tracking-widest">{steps[activeStep].details.tag}</span>
+                   </div>
+                   <h3 className="text-xl font-bold text-white mb-2">{steps[activeStep].details.heading}</h3>
+                   <p className="text-[#8E8E9A] text-[13px] leading-relaxed max-w-md">{steps[activeStep].details.text}</p>
+                 </motion.div>
+               </AnimatePresence>
+            </div>
           </div>
 
         </div>
