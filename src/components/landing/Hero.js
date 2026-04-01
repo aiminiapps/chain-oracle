@@ -29,18 +29,11 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_50%_30%,transparent,rgba(10,10,15,1))]" />
       </div>
 
-      <div className="relative z-20 max-w-6xl mx-auto px-6 text-center w-full">
-        
-        {/* Badge */}
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-dashed border-[#7C3AED]/30 bg-[#7C3AED]/5 backdrop-blur-md mb-8">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#9F67FF] animate-pulse shadow-[0_0_8px_#9F67FF]" />
-          <span className="text-xs font-bold tracking-widest text-[#9F67FF] uppercase">Oracle v4 Neural Engine</span>
-        </motion.div>
-
+      <div className="relative z-20 max-w-6xl mx-auto sm:mt-20 px-6 text-center w-full">
         {/* Headline */}
-        <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tighter mb-6 mx-auto max-w-4xl text-white">
-          Unlock Comprehensive Forecasts <br className="hidden sm:block" />
-          From <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C3AED] via-[#9F67FF] to-[#D8B4FE]">Any Token Data</span>
+        <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tighter mb-6 mx-auto max-w-4xl text-white">
+          Unlock True Alpha From <br className="hidden sm:block" />
+          <span className="text-[#7C3AED]">Any Token</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -126,7 +119,7 @@ export default function Hero() {
                                {out.score}
                             </span>
                          </div>
-                         <span className="text-[#8E8E9A] text-[10px] font-medium uppercase tracking-widest truncate block">
+                         <span className="text-[#8E8E9A] text-[10px] font-medium text-left uppercase tracking-widest truncate block">
                             {out.type}
                          </span>
                       </div>
