@@ -119,10 +119,6 @@ export default function Hero() {
                     >
                       <div className="absolute top-0 left-0 w-1 h-full" style={{ backgroundColor: out.color }} />
                       
-                      <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 border bg-[#0D0D14]" style={{ borderColor: `${out.color}30`, color: out.color, boxShadow: `inset 0 0 15px ${out.color}10` }}>
-                        <RiBrainLine className="text-lg" />
-                      </div>
-                      
                       <div className="flex-1 min-w-0">
                          <div className="flex items-center justify-between mb-1">
                             <span className="text-white text-sm font-bold truncate">{out.token}</span>
