@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import {
   RiShieldCheckLine,
   RiCopperCoinLine,
@@ -23,11 +24,8 @@ const SPEND_NODES = [
 
 export default function TokenSection() {
   return (
-    <section id="token" className="py-24 relative overflow-hidden bg-[#0A0A0F]">
-      {/* Background blobs */}
-      <div className="absolute top-0 right-0 w-[800px] h-[600px] bg-[#9F67FF]/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[500px] bg-[#22C55E]/5 rounded-full blur-[150px] pointer-events-none" />
-      
+    <section id="token" className="py-16 relative overflow-hidden bg-[#0A0A0F]">
+
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
@@ -38,9 +36,8 @@ export default function TokenSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16 md:mb-24"
         >
-          <span className="text-[#7C3AED] text-xs font-bold tracking-widest uppercase mb-4 block">The Tokenized Core</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-            The Intelligence <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#7C3AED]">Economy</span>
+            The Intelligence <span className="text-[#7C3AED]">Economy</span>
           </h2>
           <p className="text-[#8E8E9A] mt-4 max-w-2xl mx-auto text-[15px] leading-relaxed">
             $CORA is the proprietary fuel powering the neural engine. Earn tokens through community participation and burn them to extract high-conviction market signals.
@@ -81,7 +78,7 @@ export default function TokenSection() {
               </div>
 
               {/* CENTER: THE ORACLE CORE */}
-              <div className="flex flex-col items-center justify-center py-8 md:py-0">
+              <div className="flex flex-col sm:mt-10 items-center justify-center py-8 md:py-0">
                  <div className="relative w-48 h-48 flex items-center justify-center">
                     {/* Atmospheric Glow */}
                     <div className="absolute inset-0 bg-[#7C3AED]/20 rounded-full blur-[40px] animate-pulse" />
@@ -97,22 +94,9 @@ export default function TokenSection() {
                       className="w-[100px] h-[100px] rounded-full bg-gradient-to-tr from-[#5B21B6] to-[#A78BFA] shadow-[0_0_50px_rgba(124,58,237,0.5)] p-[2px]"
                     >
                        <div className="w-full h-full bg-[#0A0A0F] rounded-full flex flex-col items-center justify-center relative overflow-hidden backdrop-blur-xl">
-                          <RiCopperCoinLine className="text-[#9F67FF] text-3xl mb-0.5" />
-                          <span className="text-white font-black text-[11px] tracking-widest">$CORA</span>
-                          
-                          {/* Inner scanner sweep */}
-                          <motion.div 
-                            animate={{ top: ["-50%", "150%"] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                            className="absolute inset-x-0 h-px bg-white/40 blur-[1px] w-full"
-                          />
+                        <Image src="/agent.png" alt="Logo" width={100} height={100} />
                        </div>
                     </motion.div>
-                 </div>
-                 
-                 <div className="mt-6 text-center">
-                    <div className="text-white font-bold text-lg">Central Reservoir</div>
-                    <div className="text-[#8E8E9A] text-[10px] font-mono tracking-widest uppercase">Zero-Inflation Logic</div>
                  </div>
               </div>
 
