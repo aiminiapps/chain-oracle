@@ -14,7 +14,7 @@ const FEATURES = [
   },
   {
     title: "Process with AI Intelligence",
-    desc: "Proprietary predictive models filter out noise, honeypots, and rug-pulls to identify high-probability alpha signals and accumulation patterns.",
+    desc: "Proprietary predictive models filter out noise, honeypots, and rug-pulls to identify high probability alpha signals and accumulation patterns.",
     icon: RiBrainLine,
     color: "#9F67FF",
     bg: "rgba(159,103,255,0.1)",
@@ -22,7 +22,7 @@ const FEATURES = [
   },
   {
     title: "Execute with Confidence",
-    desc: "Receive pristine, verifiable intelligence directly to your dashboard—giving you the analytical edge to act before the market moves.",
+    desc: "Receive pristine, verifiable intelligence directly to your dashboard giving you the analytical edge to act before the market moves.",
     icon: RiCheckDoubleLine,
     color: "#22C55E",
     bg: "rgba(34,197,94,0.1)",
@@ -32,7 +32,7 @@ const FEATURES = [
 
 export default function About() {
   return (
-    <section className="relative py-24 bg-[#0A0A0F] border-t border-[#1E1E2E] overflow-hidden">
+    <section className="relative py-16 bg-[#0A0A0F] overflow-hidden">
       
       {/* Background glow for depth */}
       <div className="absolute inset-0 pointer-events-none">
