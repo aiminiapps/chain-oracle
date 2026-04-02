@@ -216,17 +216,13 @@ export default function Hero() {
 
   return (
     // Replaced `justify-start` with `justify-center` to perfectly align everything on the Y-Axis!
-    <section className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-[#06060f] py-16">
+    <section className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-transparent py-16">
       {/* ── Background ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* primary violet glow */}
-        <div className="absolute -top-[5%] left-1/2 -translate-x-1/2 w-[clamp(500px,70vw,900px)] h-[clamp(500px,70vw,900px)] bg-[radial-gradient(circle_at_center,rgba(109,40,217,0.13)_0%,rgba(124,58,237,0.05)_40%,transparent_65%)]" />
-        {/* soft orange warmth */}
-        <div className="absolute bottom-[10%] right-[10%] w-[350px] h-[350px] bg-[radial-gradient(circle,rgba(249,115,22,0.04)_0%,transparent_70%)]" />
         {/* grid */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.022)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.022)_1px,transparent_1px)] bg-[size:52px_52px] [mask-image:radial-gradient(ellipse_80%_55%_at_50%_0%,black_0%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_80%_55%_at_50%_0%,black_0%,transparent_100%)]" />
         {/* bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-[55%] bg-gradient-to-t from-[#06060f] to-transparent" />
+        <div className="absolute hidden bottom-0 left-0 right-0 h-[55%] bg-gradient-to-t from-[#06060f] to-transparent" />
       </div>
 
       {/* ── Main Content ── */}
