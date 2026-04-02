@@ -23,7 +23,6 @@ const steps = [
       text: "Instantly link your wallet with our encrypted subsystem. No personal data required—your on-chain identity serves as your universal secure key to the platform.",
       visual: (
         <div className="w-full h-[220px] bg-[#0A0A0F]/80 border border-[#2A2A3A]/50 rounded-2xl p-6 flex flex-col items-center justify-center relative shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#7C3AED]/10 to-transparent pointer-events-none rounded-b-2xl" />
            <motion.div 
              animate={{ y: [0, -5, 0] }} 
              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -61,7 +60,6 @@ const steps = [
       text: "Paste any token contract, liquidity pair, or wallet address. The Oracle Engine instantly locks onto the target across all supported networks.",
       visual: (
         <div className="w-full h-[220px] bg-[#0A0A0F]/80 border border-[#2A2A3A]/50 rounded-2xl p-8 flex flex-col justify-center relative shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#F97316]/10 to-transparent pointer-events-none rounded-b-2xl" />
            <div className="relative z-10">
               <div className="relative mb-6">
                  <RiSearchLine className="absolute left-4 top-1/2 -translate-y-1/2 text-[#F97316] text-xl" />
@@ -143,7 +141,6 @@ const steps = [
       visual: (
         <div className="w-full h-[220px] bg-[#0A0A0F]/80 border border-[#2A2A3A]/50 rounded-2xl p-6 flex flex-col justify-between relative shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden">
            <div className="absolute top-0 left-0 w-1.5 h-full bg-[#22C55E]" />
-           <div className="absolute top-0 right-0 w-32 h-32 bg-[#22C55E]/10 rounded-full blur-[40px] translate-x-10 -translate-y-10" />
            
            <div className="relative z-10 flex justify-between items-start">
              <div>
@@ -203,7 +200,14 @@ export default function HowItWorks() {
         </motion.div>
 
         {/* Main Interface */}
-        <div className="bg-[#0D0D14] border border-[#1E1E2E] rounded-[2rem] overflow-hidden shadow-2xl flex flex-col justify-between lg:flex-row min-h-[500px]">
+        <div className="bg-[#0A0A0F]/60 backdrop-blur-3xl border border-[#1E1E2E] rounded-[2rem] overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.5)] flex flex-col justify-between lg:flex-row min-h-[500px] relative group">
+          
+          {/* Premium Noise Overlay */}
+          <div 
+            className="absolute inset-0 opacity-[0.05] mix-blend-overlay pointer-events-none z-0"
+            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
+          />
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-[0.03] pointer-events-none z-0" />
           
           {/* LEFT PANEL - Timeline/Stepper */}
           <div className="lg:w-[45%] p-8 md:p-12 relative border-b lg:border-b-0 lg:border-r border-[#1E1E2E] flex flex-col justify-center">
@@ -269,9 +273,8 @@ export default function HowItWorks() {
           </div>
 
           {/* RIGHT PANEL - Dynamic Visualizer */}
-          <div className="lg:w-[55%] bg-gradient-to-br from-[#12101F]/30 to-[#0A0A0F] relative overflow-hidden flex flex-col">
-            {/* Background effects */}
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#7C3AED]/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+          <div className="lg:w-[55%] relative overflow-hidden flex flex-col z-10 border-t lg:border-t-0 border-[#1E1E2E]/50">
+            {/* Background effects removed to favor noise/transparency */}
             
             <div className="flex-1 p-8 md:p-12 flex items-center justify-center">
                <AnimatePresence mode="wait">
@@ -289,7 +292,7 @@ export default function HowItWorks() {
             </div>
 
             {/* Bottom Text Description */}
-            <div className="p-8 md:p-12 border-t border-[#1E1E2E] bg-[#0A0A0F]/80 backdrop-blur-md">
+            <div className="p-8 md:p-12 border-t border-[#1E1E2E]/50 bg-transparent relative z-10">
                <AnimatePresence mode="wait">
                  <motion.div
                    key={activeStep}
