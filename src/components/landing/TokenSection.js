@@ -24,7 +24,7 @@ const SPEND_NODES = [
 
 export default function TokenSection() {
   return (
-    <section id="token" className="py-16 relative overflow-hidden bg-[#0A0A0F]">
+    <section id="token" className="py-24 relative overflow-hidden bg-transparent">
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         

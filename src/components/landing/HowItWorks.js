@@ -186,7 +186,7 @@ export default function HowItWorks() {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section id="how-it-works" className="py-24 relative overflow-hidden bg-[#0A0A0F]">
+    <section id="how-it-works" className="py-24 relative overflow-hidden bg-transparent">
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}

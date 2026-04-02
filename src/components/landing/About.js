@@ -32,7 +32,7 @@ const FEATURES = [
 
 export default function About() {
   return (
-    <section className="relative py-16 bg-[#0A0A0F] overflow-hidden">
+    <section className="relative py-16 bg-transparent overflow-hidden">
       
       {/* Background glow for depth */}
       <div className="absolute inset-0 pointer-events-none">

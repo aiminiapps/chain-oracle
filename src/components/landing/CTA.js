@@ -6,7 +6,7 @@ import { RiTerminalBoxLine, RiArrowRightSLine, RiPulseLine } from "react-icons/r
 
 export default function CTA() {
   return (
-    <section className="py-24 relative relative bg-[#0A0A0F] overflow-hidden">
+    <section className="py-24 relative bg-transparent overflow-hidden">
       <div className="max-w-5xl mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}

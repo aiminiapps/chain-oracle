@@ -197,7 +197,7 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="py-24 relative overflow-hidden bg-[#0A0A0F]">
+    <section id="features" className="py-24 relative overflow-hidden bg-transparent">
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         
         {/* Section header */}
