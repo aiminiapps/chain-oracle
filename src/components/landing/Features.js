@@ -222,10 +222,14 @@ export default function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="rounded-3xl border border-[#1E1E2E] bg-[#0D0D14] p-8 md:p-10 flex flex-col justify-between overflow-hidden group hover:border-[#2A2A3A] transition-all duration-500 relative"
+              className="rounded-3xl border border-[#1E1E2E] bg-[#0A0A0F]/60 backdrop-blur-3xl p-8 md:p-10 flex flex-col justify-between overflow-hidden group hover:border-[#2A2A3A] transition-all duration-500 relative"
             >
-               {/* Subtle background glow top right */}
-               <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full blur-[80px] opacity-20 pointer-events-none transition-opacity group-hover:opacity-40" style={{ backgroundColor: feature.color }} />
+               {/* Premium Noise Overlay */}
+               <div 
+                 className="absolute inset-0 opacity-[0.05] mix-blend-overlay pointer-events-none"
+                 style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
+               />
+               <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-[0.03] pointer-events-none" />
 
                {/* Top Content (Text) */}
                <div className="relative z-10 mb-8">                  
