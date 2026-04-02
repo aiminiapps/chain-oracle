@@ -233,7 +233,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[clamp(2.2rem,6.2vw,4.8rem)] font-extrabold leading-[1.05] tracking-[-0.03em] text-white max-w-[860px] mb-[clamp(14px,2vw,20px)] flex flex-col items-center"
+          className="text-[clamp(2.2rem,6.2vw,4.8rem)] sm:mt-5 mt-20 py-2 font-bold leading-[1.05] tracking-[-0.03em] text-white max-w-[860px] mb-[clamp(14px,2vw,20px)] flex flex-col items-center"
         >
           <span>Unlock True Alpha From</span>
           <span className="bg-clip-text text-transparent bg-gradient-to-br from-[#C4B5FD] via-[#A78BFA] to-[#6D28D9]">
