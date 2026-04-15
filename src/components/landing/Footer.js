@@ -47,7 +47,7 @@ export default function Footer() {
                 <span className="text-sm font-medium">Twitter / X</span>
               </a>
               <a
-                href="#"
+                href="https://bscscan.com/token/0xEAdb9A1832Cf79EE749656d45249D805B3f755b1"
                 className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#0A0A0F] border border-[#2A2A3A] text-[#A1A1AA] hover:text-[#9F67FF] hover:border-[#7C3AED]/40 hover:bg-[#7C3AED]/5 transition-all duration-300 group"
               >
                 <div className="text-lg">
